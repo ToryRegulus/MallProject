@@ -53,19 +53,8 @@
       <!-- Sidebar Navidation Menus-->
       <span class="heading">Main</span>
       <ul class="list-unstyled">
-        <li class="active"><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
-        <li><a href="tables.html"><i class="icon-user-outline"></i>Members </a></li>
-        <li><a href="forms.html"><i class="icon-new-file"></i>Add Members </a></li>
-        <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
-        <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"><i
-              class="icon-windows"></i>Commodity Manage </a>
-          <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-            <li><a href="#">Browse Category</a></li>
-            <li><a href="#">Add Category</a></li>
-            <li><a href="#">Commodity Info</a></li>
-            <li><a href="#">Commodity Addition</a></li>
-          </ul>
-        </li>
+        {% block sidebar %}
+        {% endblock%}
       </ul><span class="heading">Extras</span>
       <ul class="list-unstyled">
         <li> <a href="#"><i class="icon-settings"></i>Demo</a></li>
@@ -77,7 +66,7 @@
     <div class="page-content">
       <!-- Main Body -->
       {% block mainbody %}
-      {% endblock%}
+      {% endblock %}
       <!-- Main Body End -->
       <footer class="footer">
         <div class="footer__block block no-margin-bottom">
