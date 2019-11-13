@@ -51,8 +51,8 @@
                     <label for="register-password" class="label-material">Password </label>
                   </div>
                   <div class="form-group-material">
-                    <input id="repeat-password" type="password" name="repeatPassword" required class="input-material">
-                    <label for="repeat-password" class="label-material">Repeat Password </label>
+                    <input id="confirm-password" type="password" name="confirmPassword" required class="input-material" onkeyup="validate()"><span id="Warning"></span>
+                    <label for="confirm-password" class="label-material">Confirm Password </label>
                   </div>
                 </div>
               </div>
@@ -110,4 +110,18 @@
     </div>
   </div>
 </section>
+
+<script>
+  function validate() {
+    var pwd1 = document.getElementById("register-password").value;
+    var pwd2 = document.getElementById("confirm-password").value;
+ 
+    if(pwd1 != pwd2) {
+        document.getElementById("Warning").innerHTML="<font color='red'>The password doesn't match</font>";
+        document.getElementById("button").disabled = true;
+     } else {
+        document.getElementById("Warning").innerHTML="";
+     }
+}
+</script>
 {% endblock %}
