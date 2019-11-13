@@ -3,7 +3,7 @@
 {% block sidebar %}
 <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
 <li class="active"><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
-<li><a href="forms.html"><i class="icon-new-file"></i>Add Members </a></li>
+<li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
 <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
     <i class="icon-windows"></i>Commodity Manage </a>
@@ -92,7 +92,6 @@
 <footer class="footer">
   <div class="footer__block block no-margin-bottom">
     <div class="container-fluid text-center">
-      <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
       <p class="no-margin-bottom">Copyright &copy; 2019.Company name All rights reserved.</p>
     </div>
   </div>

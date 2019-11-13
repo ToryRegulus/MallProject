@@ -3,7 +3,7 @@
 {% block sidebar %}
 <li class="active"><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
 <li><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
-<li><a href="forms.html"><i class="icon-new-file"></i>Add Members </a></li>
+<li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
 <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
     <i class="icon-windows"></i>Commodity Manage </a>

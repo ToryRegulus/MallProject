@@ -13,7 +13,7 @@ def index(request):
 
 def add(request):
     """添加会员信息"""
-    return render(request, 'backstage/index.html')
+    return render(request, 'backstage/users/add.html')
 
 
 def insert(request):
