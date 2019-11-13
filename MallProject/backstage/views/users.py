@@ -30,10 +30,13 @@ def insert(request):
         ob.address = request.POST['registerAddress']
         ob.code = request.POST['registerZip']
         ob.state = 1
-        ob.addtime = datetime.now
+        ob.addtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        ob.save()
+        context = {'info': 'Addition Success'}
     except Exception as err:
         print(err)
         context = {'info': 'Addition Failed'}
+    return render(request, 'backstage/info.html', context)
 
 
 def edit(request):
