@@ -58,20 +58,20 @@
                   <td>{{ vo.name }}</td>
                   <td>
                     {% if vo.sex == 1 %}
-                      男
+                      Male
                     {% else %}
-                      女
+                      Female
                     {% endif %}
                   </td>
                   <td>{{ vo.email }}</td>
                   <td>{{ vo.addtime }}</td>
                   <td>
                     {% if vo.status == 1 %}
-                      正常
+                      Normal
                     {% elif vo.status == 2 %}
-                      禁用
+                      Disabled
                     {% else %}
-                      管理员
+                      Administrator
                     {% endif %}
                   </td>
                   <td>
