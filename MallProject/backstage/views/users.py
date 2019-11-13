@@ -20,7 +20,7 @@ def add(request):
 def insert(request):
     """执行添加"""
     try:
-        ob = Users()
+        ob = Users()    # 实例化Users模型
         ob.username = request.POST['registerUsername']
         ob.password = request.POST['registerPassword']
         ob.sex = request.POST['gender']
@@ -31,7 +31,7 @@ def insert(request):
         ob.code = request.POST['registerZip']
         ob.state = 1
         ob.addtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        ob.save()
+        # ob.save()   # 将数据存储至数据库
         context = {'info': 'Addition Success'}
     except Exception as err:
         print(err)
