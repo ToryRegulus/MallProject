@@ -1,100 +1,102 @@
 {% load static from staticfiles %}
 <!DOCTYPE html>
 <html>
-  <head> 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="{% static 'backstage/vendor/bootstrap/css/bootstrap.min.css' %}">
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="{% static 'backstage/vendor/font-awesome/css/font-awesome.min.css' %}">
-    <!-- Custom Font Icons CSS-->
-    <link rel="stylesheet" href="{% static 'backstage/css/font.css' %}">
-    <!-- Google fonts - Muli-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="{% static 'backstage/css/style.default.css' %}" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="{% static 'backstage/css/custom.css' %}">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="{% static '/backstage/img/favicon.ico' %}">
-  </head>
-  <body>
-    <header class="header">   
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid d-flex align-items-center justify-content-between">
-          <div class="navbar-header">
-            <!-- Navbar Header--><a href="{% url 'backstage_index' %}" class="navbar-brand">
-              <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Mall</strong><strong>Project</strong></div>
-              <div class="brand-text brand-sm"><strong class="text-primary">M</strong><strong>P</strong></div></a>
-            <!-- Sidebar Toggle Btn -->
-            <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
-          </div>
-          <div class="right-menu list-inline no-margin-bottom">
-            <!-- Log out -->
-            <div class="list-inline-item logout">
-              <a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i class="icon-logout"></i></a></div>
-          </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Home</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <!-- Bootstrap CSS-->
+  <link rel="stylesheet" href="{% static 'backstage/vendor/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Font Awesome CSS-->
+  <link rel="stylesheet" href="{% static 'backstage/vendor/font-awesome/css/font-awesome.min.css' %}">
+  <!-- Custom Font Icons CSS-->
+  <link rel="stylesheet" href="{% static 'backstage/css/font.css' %}">
+  <!-- Google fonts - Muli-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="{% static 'backstage/css/style.default.css' %}" id="theme-stylesheet">
+  <!-- Custom stylesheet - for your changes-->
+  <link rel="stylesheet" href="{% static 'backstage/css/custom.css' %}">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="{% static '/backstage/img/favicon.ico' %}">
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid d-flex align-items-center justify-content-between">
+        <div class="navbar-header">
+          <!-- Navbar Header--><a href="{% url 'backstage_index' %}" class="navbar-brand">
+            <div class="brand-text brand-big visible text-uppercase"><strong
+                class="text-primary">Mall</strong><strong>Project</strong></div>
+            <div class="brand-text brand-sm"><strong class="text-primary">M</strong><strong>P</strong></div>
+          </a>
+          <!-- Sidebar Toggle Btn -->
+          <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
         </div>
-      </nav>
-    </header>
-    <div class="d-flex align-items-stretch">
-      <!-- Sidebar Navigation-->
-      <nav id="sidebar">
-        <!-- Sidebar Navidation Menus-->
-        <span class="heading">Main</span>
-        <ul class="list-unstyled">
-          <li class="active"><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
-          <li><a href="tables.html"><i class="icon-user-outline"></i>Members </a></li>
-          <li><a href="forms.html"><i class="icon-new-file"></i>Add Members </a></li>
-          <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
-          <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-windows"></i>Commodity Manage </a>
-            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-              <li><a href="#">Browse Category</a></li>
-              <li><a href="#">Add Category</a></li>
-              <li><a href="#">Commodity Info</a></li>
-              <li><a href="#">Commodity Addition</a></li>
-            </ul>
-          </li>
-        </ul><span class="heading">Extras</span>
-        <ul class="list-unstyled">
-          <li> <a href="#"><i class="icon-settings"></i>Demo</a></li>
-          <li> <a href="#"><i class="icon-writing-whiteboard"></i>Demo</a></li>
-          <li> <a href="#"><i class="icon-chart"></i>Demo</a></li>
-        </ul>
-      </nav>
-      <!-- Sidebar Navigation end-->
-      <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Wellcome To MallProject Backstage</h2>
-          </div>
+        <div class="right-menu list-inline no-margin-bottom">
+          <!-- Log out -->
+          <div class="list-inline-item logout">
+            <a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout </span><i
+                class="icon-logout"></i></a></div>
         </div>
-        <!-- Main Body -->
-        {% block mainbody %}
-        {% endblock%}
-        <!-- Main Body End -->
-        <footer class="footer">
-          <div class="footer__block block no-margin-bottom">
-            <div class="container-fluid text-center">
-              <p class="no-margin-bottom">Copyright &copy; 2019.Company name All rights reserved.</p>
-            </div>
-          </div>
-        </footer>
       </div>
+    </nav>
+  </header>
+  <div class="d-flex align-items-stretch">
+    <!-- Sidebar Navigation-->
+    <nav id="sidebar">
+      <!-- Sidebar Navidation Menus-->
+      <span class="heading">Main</span>
+      <ul class="list-unstyled">
+        <li class="active"><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
+        <li><a href="tables.html"><i class="icon-user-outline"></i>Members </a></li>
+        <li><a href="forms.html"><i class="icon-new-file"></i>Add Members </a></li>
+        <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
+        <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"><i
+              class="icon-windows"></i>Commodity Manage </a>
+          <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+            <li><a href="#">Browse Category</a></li>
+            <li><a href="#">Add Category</a></li>
+            <li><a href="#">Commodity Info</a></li>
+            <li><a href="#">Commodity Addition</a></li>
+          </ul>
+        </li>
+      </ul><span class="heading">Extras</span>
+      <ul class="list-unstyled">
+        <li> <a href="#"><i class="icon-settings"></i>Demo</a></li>
+        <li> <a href="#"><i class="icon-writing-whiteboard"></i>Demo</a></li>
+        <li> <a href="#"><i class="icon-chart"></i>Demo</a></li>
+      </ul>
+    </nav>
+    <!-- Sidebar Navigation end-->
+    <div class="page-content">
+      <!-- Main Body -->
+      {% block mainbody %}
+      {% endblock%}
+      <!-- Main Body End -->
+      <footer class="footer">
+        <div class="footer__block block no-margin-bottom">
+          <div class="container-fluid text-center">
+            <p class="no-margin-bottom">Copyright &copy; 2019.Company name All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
-    <!-- JavaScript files-->
-    <script src="{% static 'backstage/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'backstage/vendor/popper.js/umd/popper.min.js' %}"></script>
-    <script src="{% static 'backstage/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'backstage/vendor/jquery.cookie/jquery.cookie.js' %}"></script>
-    <script src="{% static 'backstage/vendor/chart.js/Chart.min.js' %}"></script>
-    <script src="{% static 'backstage/vendor/jquery-validation/jquery.validate.min.js' %}"></script>
-    <script src="{% static 'backstage/js/charts-home.js' %}"></script>
-    <script src="{% static 'backstage/js/front.js' %}"></script>
-  </body>
+  </div>
+  <!-- JavaScript files-->
+  <script src="{% static 'backstage/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'backstage/vendor/popper.js/umd/popper.min.js' %}"></script>
+  <script src="{% static 'backstage/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'backstage/vendor/jquery.cookie/jquery.cookie.js' %}"></script>
+  <script src="{% static 'backstage/vendor/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'backstage/vendor/jquery-validation/jquery.validate.min.js' %}"></script>
+  <script src="{% static 'backstage/js/charts-home.js' %}"></script>
+  <script src="{% static 'backstage/js/front.js' %}"></script>
+</body>
+
 </html>
