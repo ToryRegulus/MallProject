@@ -65,11 +65,18 @@
                   </td>
                   <td>{{ vo.email }}</td>
                   <td>{{ vo.addtime }}</td>
-                  <td>{{ vo.state }}</td>
                   <td>
-                    <a style="text-decoration: none;" href="#" class='view-link'>编辑</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="text-decoration: none;" href="#" class='view-link'>删除</a>
+                    {% if vo.status == 1 %}
+                      正常
+                    {% elif vo.status == 2 %}
+                      禁用
+                    {% endif %}
+                      管理员
+                  </td>
+                  <td>
+                    <a style="text-decoration: none;" href="#" class='view-link'>Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="text-decoration: none;" href="#" class='view-link'>Delete</a>
                   </td>
                 </tr>
                 {% endfor %}
