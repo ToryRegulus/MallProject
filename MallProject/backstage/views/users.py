@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from common.models import Users
 from datetime import datetime
-import base64
+from .. import base64
 
 # Create your views here.
 
@@ -44,10 +44,10 @@ def insert(request):
         ob.state = 1
         ob.addtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         ob.save()   # 将数据存储至数据库
-        context = {'info': 'Addition Success'}
+        context = {'Info': 'Addition Success', 'Detail': 'None'}
     except Exception as err:
         print(err)
-        context = {'info': 'Addition Failed'}
+        context = {'Info': 'Addition Failed', 'Detail': err}
     return render(request, 'backstage/info.html', context)
 
 

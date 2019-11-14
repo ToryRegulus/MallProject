@@ -66,9 +66,9 @@
                   <td>{{ vo.email }}</td>
                   <td>{{ vo.addtime }}</td>
                   <td>
-                    {% if vo.status == 1 %}
+                    {% if vo.state == 1 %}
                       Normal
-                    {% elif vo.status == 2 %}
+                    {% elif vo.state == 2 %}
                       Disabled
                     {% else %}
                       Administrator
