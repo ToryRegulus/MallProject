@@ -71,9 +71,9 @@
                                         {% if vo.state == 1 %}
                                         Normal
                                         {% elif vo.state == 2 %}
-                                        Disabled
+                                        <font style="color: crimson;">Disabled</font>
                                         {% else %}
-                                        Administrator
+                                        <font style="color: darkviolet;">Administrator</font>
                                         {% endif %}
                                     </td>
                                     <td>
@@ -95,23 +95,23 @@
                             <tr>
                                 <td>
                                     {% if userslist.has_previous %}
-                                        <a style="text-decoration: none;" href="?page={{ userslist.previous_page_number }}">&laquo;</a>
+                                    <font style="font-size: large;"><a style="text-decoration: none;" href="?page={{ userslist.previous_page_number }}">&laquo;</a></font>
                                     {% else %}
-                                        &laquo;
+                                        <font style="font-size: large;">&laquo;</font>
                                     {% endif %}
 
                                     {% for num in userslist.paginator.page_range %}
                                         {% if num == userslist.number %}
-                                            {{ num }}
+                                        <font style="font-size: large;">{{ num }}</font>
                                         {% else %}
-                                            <a style="text-decoration: none;" href="?page={{ num }}">{{ num }}</a>
+                                        <font style="font-size: large;"><a style="text-decoration: none;" href="?page={{ num }}">{{ num }}</a></font>
                                         {% endif %}
                                     {% endfor %}
 
                                     {% if userslist.has_next %}
-                                        <a style="text-decoration: none;" href="?page={{ userslist.next_page_number }}">&raquo;</a>
+                                    <font style="font-size: large;"><a style="text-decoration: none;" href="?page={{ userslist.next_page_number }}">&raquo;</a></font>
                                     {% else %}
-                                        &raquo;
+                                    <font style="font-size: large;">&raquo;</font>
                                     {% endif %}
                                 </td>
                             </tr>
