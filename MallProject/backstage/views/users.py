@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from common.models import Users
 from datetime import datetime
@@ -6,10 +7,15 @@ from .. import base64
 # Create your views here.
 
 
-def index(request):
+def index(request, page):
     """会员信息主页"""
     user_list = Users.objects.all()
-    context = {'userslist': user_list}
+
+    # 实现分页功能
+    paginator = Paginator(user_list, 10)     # 实例化Paginator, 每页显示3条数据
+    Pag = paginator.page(page)
+
+    context = {'userslist': Pag}
     return render(request, 'backstage/users/index.html', context)
 
 

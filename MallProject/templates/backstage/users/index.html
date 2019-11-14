@@ -3,7 +3,7 @@
 {% block sidebar %}
 <ul class="list-unstyled">
     <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
-    <li class="active"><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
+    <li class="active"><a href="{% url 'backstage_users_index' 1 %}"><i class="icon-user-outline"></i>Members </a></li>
     <li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
     <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
     <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
@@ -89,19 +89,36 @@
                         </table>
                     </div>
                 </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>
+                                    {% if userslist.has_previous %}
+                                        <a style="text-decoration: none;" href="{{ userslist.previous_page_number }}">&laquo;</a>
+                                    {% else %}
+                                        &laquo;
+                                    {% endif %}
+
+                                    {% for num in userslist.paginator.page_range %}
+                                        {% if num == userslist.number %}
+                                            {{ num }}
+                                        {% else %}
+                                            <a style="text-decoration: none;" href="#">{{ num }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if userslist.has_next %}
+                                        <a style="text-decoration: none;" href="{{ userslist.next_page_number }}">&raquo;</a>
+                                    {% else %}
+                                        &raquo;
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div>
-            <ul class="pagination">
-                <li><a href="#">«</a></li>
-                <li class="active"><a href="#">猕猴桃</a></li><!-- 设个默认为第一页 -->
-                <li><a href="#">橙</a></li>
-                <li><a href="#">柚</a></li>
-                <li><a href="#">西瓜</a></li>
-                <li><a href="#">甜瓜</a></li>
-                <li><a href="#">莲薏</a></li>
-                <li><a href="#">»</a></li>
-            </ul>
         </div>
     </div>
 </section>
