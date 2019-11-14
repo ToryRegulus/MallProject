@@ -53,7 +53,14 @@ def insert(request):
 
 def edit(request, uid):
     """修改会员信息"""
-    pass
+    try:
+        ob = Users.object.get(id=uid)
+        context = {'user': ob}
+        return render(request, 'backstage/users/edit.html', context)
+    except Exception as err:
+        print(err)
+        context = {'Info': 'Edit Failed', 'Detail': err}
+        return render(request, 'backstage/info.html', context)
 
 
 def update(request, uid):

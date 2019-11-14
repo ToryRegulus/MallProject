@@ -75,7 +75,8 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a style="text-decoration: none;" href="#" class='view-link'>Edit</a>
+                                        <a style="text-decoration: none;" href="{% url 'backstage_users_edit' vo.id %}"
+                                            class='view-link'>Edit</a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a style="text-decoration: none;" href="{% url 'backstage_users_del' vo.id %}"
                                             class='view-link' onclick="del()">Delete</a>
