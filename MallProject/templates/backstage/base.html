@@ -52,10 +52,9 @@
         <nav id="sidebar">
             <!-- Sidebar Navidation Menus-->
             <span class="heading">Main</span>
-            <ul class="list-unstyled">
-                {% block sidebar %}
-                {% endblock%}
-            </ul><span class="heading">Extras</span>
+            {% block sidebar %}
+            {% endblock%}
+            <span class="heading">Extras</span>
             <ul class="list-unstyled">
                 <li> <a href="#"><i class="icon-settings"></i>Demo</a></li>
                 <li> <a href="#"><i class="icon-writing-whiteboard"></i>Demo</a></li>

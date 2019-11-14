@@ -1,19 +1,21 @@
 {% extends 'backstage/base.html' %}
 
 {% block sidebar %}
-<li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
-<li class="active"><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
-<li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
-<li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
-<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
-        <i class="icon-windows"></i>Commodity Manage </a>
-    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-        <li><a href="#">Browse Category</a></li>
-        <li><a href="#">Add Category</a></li>
-        <li><a href="#">Commodity Info</a></li>
-        <li><a href="#">Commodity Addition</a></li>
-    </ul>
-</li>
+<ul class="list-unstyled">
+    <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
+    <li class="active"><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
+    <li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
+    <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
+    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
+            <i class="icon-windows"></i>Commodity Manage </a>
+        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+            <li><a href="#">Browse Category</a></li>
+            <li><a href="#">Add Category</a></li>
+            <li><a href="#">Commodity Info</a></li>
+            <li><a href="#">Commodity Addition</a></li>
+        </ul>
+    </li>
+</ul>
 {% endblock %}
 
 {% block mainbody %}
@@ -88,6 +90,18 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div>
+            <ul class="pagination">
+                <li><a href="#">«</a></li>
+                <li class="active"><a href="#">猕猴桃</a></li><!-- 设个默认为第一页 -->
+                <li><a href="#">橙</a></li>
+                <li><a href="#">柚</a></li>
+                <li><a href="#">西瓜</a></li>
+                <li><a href="#">甜瓜</a></li>
+                <li><a href="#">莲薏</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
         </div>
     </div>
 </section>
