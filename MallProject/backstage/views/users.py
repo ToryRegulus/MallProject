@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from common.models import Users
 from datetime import datetime
 from .. import base64
@@ -44,23 +44,30 @@ def insert(request):
         ob.state = 1
         ob.addtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         ob.save()   # 将数据存储至数据库
-        context = {'Info': 'Addition Success', 'Detail': 'None'}
+        return redirect('/backstage/users/')
     except Exception as err:
         print(err)
         context = {'Info': 'Addition Failed', 'Detail': err}
-    return render(request, 'backstage/info.html', context)
+        return render(request, 'backstage/info.html', context)
 
 
-def edit(request):
+def edit(request, uid):
     """修改会员信息"""
     pass
 
 
-def update(request):
+def update(request, uid):
     """执行修改"""
     pass
 
 
-def delete(request):
+def delete(request, uid):
     """删除会员信息"""
-    pass
+    try:
+        ob = Users.objects.get(id=uid)
+        ob.delete()
+        return redirect('/backstage/users/')
+    except Exception as err:
+        print(err)
+        context = {'Info': 'Delete Failed', 'Detail': err}
+        return render(request, 'backstage/info.html', context)
