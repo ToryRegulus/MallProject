@@ -77,7 +77,7 @@
                   <td>
                     <a style="text-decoration: none;" href="#" class='view-link'>Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a style="text-decoration: none;" href="#" class='view-link'>Delete</a>
+                    <a style="text-decoration: none;" href="{% url 'backstage_users_del' vo.id %}" class='view-link'>Delete</a>
                   </td>
                 </tr>
                 {% endfor %}
