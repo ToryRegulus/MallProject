@@ -7,12 +7,13 @@ from .. import base64
 # Create your views here.
 
 
-def index(request, page):
+def index(request):
     """会员信息主页"""
     user_list = Users.objects.all()
 
     # 实现分页功能
-    paginator = Paginator(user_list, 10)     # 实例化Paginator, 每页显示3条数据
+    paginator = Paginator(user_list, 2)     # 实例化Paginator, 每页显示3条数据
+    page = request.GET.get('page', 1)
     Pag = paginator.page(page)
 
     context = {'userslist': Pag}
@@ -50,7 +51,7 @@ def insert(request):
         ob.state = 1
         ob.addtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         ob.save()   # 将数据存储至数据库
-        return redirect('/backstage/users/')
+        return redirect('/backstage/users/1')
     except Exception as err:
         print(err)
         context = {'Info': 'Addition Failed', 'Detail': err}
@@ -81,7 +82,7 @@ def update(request, uid):
         ob.code = request.POST['registerZip']
         ob.state = request.POST['status']
         ob.save()
-        return redirect('/backstage/users/')
+        return redirect('/backstage/users/1')
     except Exception as err:
         print(err)
         context = {'Info': 'Edit Failed', 'Detail': err}
@@ -93,7 +94,7 @@ def delete(request, uid):
     try:
         ob = Users.objects.get(id=uid)
         ob.delete()
-        return redirect('/backstage/users/')
+        return redirect('/backstage/users/1')
     except Exception as err:
         print(err)
         context = {'Info': 'Delete Failed', 'Detail': err}

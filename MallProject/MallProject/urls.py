@@ -16,6 +16,6 @@ Including another URLconf
 from django.urls import path, include
 
 urlpatterns = [
-    path('backstage/', include('backstage.urls')),      # 后台总路由
+    path('backstage', include('backstage.urls')),      # 后台总路由
     path('', include('web.urls')),      # 前台总路由
 ]

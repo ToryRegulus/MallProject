@@ -3,7 +3,7 @@
 {% block sidebar %}
 <ul class="list-unstyled">
     <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
-    <li class="active"><a href="{% url 'backstage_users_index' 1 %}"><i class="icon-user-outline"></i>Members </a></li>
+    <li class="active"><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
     <li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
     <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
     <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
@@ -95,7 +95,7 @@
                             <tr>
                                 <td>
                                     {% if userslist.has_previous %}
-                                        <a style="text-decoration: none;" href="{{ userslist.previous_page_number }}">&laquo;</a>
+                                        <a style="text-decoration: none;" href="?page={{ userslist.previous_page_number }}">&laquo;</a>
                                     {% else %}
                                         &laquo;
                                     {% endif %}
@@ -104,12 +104,12 @@
                                         {% if num == userslist.number %}
                                             {{ num }}
                                         {% else %}
-                                            <a style="text-decoration: none;" href="#">{{ num }}</a>
+                                            <a style="text-decoration: none;" href="?page={{ num }}">{{ num }}</a>
                                         {% endif %}
                                     {% endfor %}
 
                                     {% if userslist.has_next %}
-                                        <a style="text-decoration: none;" href="{{ userslist.next_page_number }}">&raquo;</a>
+                                        <a style="text-decoration: none;" href="?page={{ userslist.next_page_number }}">&raquo;</a>
                                     {% else %}
                                         &raquo;
                                     {% endif %}
