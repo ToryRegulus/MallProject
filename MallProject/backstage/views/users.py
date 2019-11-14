@@ -54,18 +54,32 @@ def insert(request):
 def edit(request, uid):
     """修改会员信息"""
     try:
-        ob = Users.object.get(id=uid)
+        ob = Users.objects.get(id=uid)
         context = {'user': ob}
         return render(request, 'backstage/users/edit.html', context)
     except Exception as err:
         print(err)
-        context = {'Info': 'Edit Failed', 'Detail': err}
+        context = {'Info': 'Cannnot fetch the page', 'Detail': err}
         return render(request, 'backstage/info.html', context)
 
 
 def update(request, uid):
     """执行修改"""
-    pass
+    try:
+        ob = Users.objects.get(id=uid)
+        ob.sex = request.POST['gender']
+        ob.name = request.POST['registerName']
+        ob.email = request.POST['registerEmail']
+        ob.phone = request.POST['registerPhone']
+        ob.address = request.POST['registerAddress']
+        ob.code = request.POST['registerZip']
+        ob.state = request.POST['status']
+        ob.save()
+        return redirect('/backstage/users/')
+    except Exception as err:
+        print(err)
+        context = {'Info': 'Edit Failed', 'Detail': err}
+        return render(request, 'backstage/info.html', context)
 
 
 def delete(request, uid):
