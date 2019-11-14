@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from common.models import Users
 from datetime import datetime
+import base64
 
 # Create your views here.
 
@@ -22,7 +23,18 @@ def insert(request):
     try:
         ob = Users()    # 实例化Users模型
         ob.username = request.POST['registerUsername']
-        ob.password = request.POST['registerPassword']
+
+        # 密码base64加密
+        pwd = request.POST['registerPassword']
+        pwd = base64.base64_encode(pwd)
+        ob.password = pwd
+
+        # 密码md5加密
+        # import hashlib
+        # m = hashlib.md5()
+        # m.update(bytes(request.POST['registerPassword'], encoding='utf-8'))
+        # ob.password = m.hexdigest()
+
         ob.sex = request.POST['gender']
         ob.name = request.POST['registerName']
         ob.email = request.POST['registerEmail']
@@ -31,7 +43,7 @@ def insert(request):
         ob.code = request.POST['registerZip']
         ob.state = 1
         ob.addtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        # ob.save()   # 将数据存储至数据库
+        ob.save()   # 将数据存储至数据库
         context = {'info': 'Addition Success'}
     except Exception as err:
         print(err)
