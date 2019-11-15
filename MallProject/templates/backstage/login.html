@@ -46,6 +46,7 @@
                         <div class="form d-flex align-items-center">
                             <div class="content">
                                 <form method="POST" class="form-validate mb-4" action="{% url 'backstage_login' %}">
+                                    {% csrf_token %}
                                     <div class="form-group">
                                         <input id="login-username" type="text" name="loginUsername" required
                                             data-msg="Please enter your username" class="input-material">
@@ -55,8 +56,9 @@
                                         <input id="login-password" type="password" name="loginPassword" required
                                             data-msg="Please enter your password" class="input-material">
                                         <label for="login-password" class="label-material">Password</label>
+                                        <font style="color: crimson;">{{ info }}</font>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <button type="submit" class="btn btn-primary">Sign in</button>
                                 </form>
                             </div>
                         </div>

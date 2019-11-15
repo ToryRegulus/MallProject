@@ -25,7 +25,6 @@ class Users(models.Model):
             'phone': self.phone,
             'email': self.email,
             'state': self.state,
-            'addtime': self.addtime
         }
 
     class Meta:

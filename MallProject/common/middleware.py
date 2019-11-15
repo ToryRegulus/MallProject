@@ -15,7 +15,9 @@ class ShopMiddleware(object):
             '/backstage/logout',
         ]
 
-        path = request.path  # 获取当前请求路径
+        # 获取当前请求路径
+        path = request.path
+
         # 判断用户登录，否则跳转登录页
         if re.match('/backstage', path) and (path not in pass_url):
             if 'admin' not in request.session:

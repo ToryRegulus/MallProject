@@ -39,10 +39,13 @@
                     <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
                 </div>
                 <div class="right-menu list-inline no-margin-bottom">
+                    <div class="list-inline-item">
+                        ACC: {{ request.session.admin.name }}
+                    </div>
                     <!-- Log out -->
                     <div class="list-inline-item logout">
-                        <a id="logout" href="login.html" class="nav-link"> <span class="d-none d-sm-inline">Logout
-                            </span><i class="icon-logout"></i></a></div>
+                        <a id="logout" href="{% url 'backstage_sign_out' %}" class="nav-link"> <span
+                                class="d-none d-sm-inline">Sign out </span><i class="icon-logout"></i></a></div>
                 </div>
             </div>
         </nav>
