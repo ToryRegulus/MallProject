@@ -30,3 +30,4 @@ class Users(models.Model):
 
     class Meta:
         db_table = 'users'  # 指定数据库表名（默认common_users)
+        ordering = ['id']   # 模型按ID排序
