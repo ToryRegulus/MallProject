@@ -11,8 +11,8 @@
         <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
             <li><a href="{% url 'backstage_types_index' %}">Browse Category</a></li>
             <li><a href="{% url 'backstage_types_add' 0 %}">Add Category</a></li>
-            <li><a href="#">Commodity Info</a></li>
-            <li><a href="#">Commodity Addition</a></li>
+            <li><a href="{% url 'backstage_goods_index' %}">Commodity Info</a></li>
+            <li><a href="{% url 'backstage_goods_add' %}">Commodity Addition</a></li>
         </ul>
     </li>
 </ul>
@@ -49,7 +49,6 @@
                                         <input id="register-username" type="text" name="categoryName" required
                                             class="input-material" value="{{ type.name }}">
                                         <label for="register-username" class="label-material">Category Name</label>
-                                        <div class="line"></div>
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,115 @@
+{% extends 'backstage/base.html' %}
+
+{% block sidebar %}
+<ul class="list-unstyled">
+    <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
+    <li><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
+    <li class="active"><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
+    <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
+    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
+            <i class="icon-windows"></i>Commodity Manage </a>
+        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+            <li><a href="{% url 'backstage_types_index' %}">Browse Category</a></li>
+            <li><a href="{% url 'backstage_types_add' 0 %}">Add Category</a></li>
+            <li><a href="{% url 'backstage_goods_index' %}">Commodity Info</a></li>
+            <li><a href="{% url 'backstage_goods_add' %}">Commodity Addition</a></li>
+        </ul>
+    </li>
+</ul>
+{% endblock %}
+
+{% block mainbody %}
+<!-- Page Header-->
+<div class="page-header no-margin-bottom">
+    <div class="container-fluid">
+        <h2 class="h5 no-margin-bottom">Add Commodity Information</h2>
+    </div>
+</div>
+<!-- Breadcrumb-->
+<div class="container-fluid">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'backstage_index' %}">Home</a></li>
+        <li class="breadcrumb-item active">Add Commodity Information </li>
+    </ul>
+</div>
+<section class="no-padding-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="block">
+                    <div class="title"><strong>Commodity Information Form</strong></div>
+                    <div class="block-body">
+                        <form id="edit-profile" action="{% url 'backstage_goods_insert' %}" class="form-horizontal"
+                            method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">Select</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control mb-3 mb-3" name="typeID">
+                                                {% for vo in typelist %}
+                                                <option {% if vo.pid == 0 %}disabled{% endif %} value="{{ vo.id }}">
+                                                    {{vo.pname}}|--{{ vo.name }}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group-material">
+                                        <input id="commodity-Name" type="text" name="commodityName" required
+                                            class="input-material">
+                                        <label for="commodity-Name" class="label-material">CommodityName</label>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group-material">
+                                        <input id="manufacturer" type="text" name="Manufacturer" required
+                                            class="input-material">
+                                        <label for="manufacturer" class="label-material">Manufacturer </label>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group-material">
+                                        <input id="unit-price" type="text" name="unitPrice" required
+                                            class="input-material">
+                                        <label for="unit-price" class="label-material">UnitPrice </label>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group-material">
+                                        <input id="inventory" type="text" name="Inventory" required
+                                            class="input-material">
+                                        <label for="inventory" class="label-material">Inventory </label>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group-material">
+                                        <input id="product-introduction" name="productIntroduction" required
+                                            class="input-material">
+                                        <label for="product-introduction" class="label-material">ProductIntroduction
+                                        </label>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">CommodityPic</label>
+                                        <div class="col-sm-9">
+                                            <input id="pic" type="file" name="PIC">
+                                        </div>
+                                    </div>
+                                    <div class="line"></div>
+                                </div>
+                            </div>
+                            <br><br><br><br><br><br>
+                            <div class="form-group row">
+                                <div class="col-sm-12 ml-auto">
+                                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="submit" class="btn btn-primary">ADD</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

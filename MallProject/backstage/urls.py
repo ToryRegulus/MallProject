@@ -1,4 +1,4 @@
-from backstage.views import index, users, types
+from backstage.views import index, users, types, goods
 from django.urls import path
 
 urlpatterns = [
@@ -18,7 +18,7 @@ urlpatterns = [
          name='backstage_users_update'),
     path('users/del/<int:uid>', users.delete, name='backstage_users_del'),
 
-    # 后台商品信息路由
+    # 后台商品目录路由
     path('types', types.index, name='backstage_types_index'),
     path('types/add/<int:tid>', types.add, name='backstage_types_add'),
     path('types/insert', types.insert, name='backstage_types_insert'),
@@ -26,4 +26,13 @@ urlpatterns = [
     path('types/update/<int:tid>', types.update,
          name='backstage_types_update'),
     path('types/del/<int:tid>', types.delete, name='backstage_types_del'),
+
+    # 商品信息管理路由
+    path('goods', goods.index, name='backstage_goods_index'),
+    path('goods/add', goods.add, name='backstage_goods_add'),
+    path('goods/insert', goods.insert, name='backstage_goods_insert'),
+    path('goods/edit/<int:gid>', goods.edit, name='backstage_goods_edit'),
+    path('goods/update/<int:gid>', goods.update,
+         name='backstage_goods_update'),
+    path('goods/del/<int:gid>', goods.delete, name='backstage_goods_del'),
 ]

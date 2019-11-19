@@ -11,8 +11,8 @@
         <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
             <li><a href="{% url 'backstage_types_index' %}">Browse Category</a></li>
             <li class="active"><a href="{% url 'backstage_types_add' 0 %}">Add Category</a></li>
-            <li><a href="#">Commodity Info</a></li>
-            <li><a href="#">Commodity Addition</a></li>
+            <li><a href="{% url 'backstage_goods_index' %}">Commodity Info</a></li>
+            <li><a href="{% url 'backstage_goods_add' %}">Commodity Addition</a></li>
         </ul>
     </li>
 </ul>
@@ -77,18 +77,4 @@
         </div>
     </div>
 </section>
-
-<script>
-    function validate() {
-        var pwd1 = document.getElementById("register-password").value;
-        var pwd2 = document.getElementById("confirm-password").value;
-
-        if (pwd1 != pwd2) {
-            document.getElementById("Warning").innerHTML = "<font color='red'>The password doesn't match</font>";
-            document.getElementById("button").disabled = true;
-        } else {
-            document.getElementById("Warning").innerHTML = "";
-        }
-    }
-</script>
 {% endblock %}

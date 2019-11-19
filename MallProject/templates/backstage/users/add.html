@@ -11,8 +11,8 @@
         <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
             <li><a href="{% url 'backstage_types_index' %}">Browse Category</a></li>
             <li><a href="{% url 'backstage_types_add' 0 %}">Add Category</a></li>
-            <li><a href="#">Commodity Info</a></li>
-            <li><a href="#">Commodity Addition</a></li>
+            <li><a href="{% url 'backstage_goods_index' %}">Commodity Info</a></li>
+            <li><a href="{% url 'backstage_goods_add' %}">Commodity Addition</a></li>
         </ul>
     </li>
 </ul>
@@ -49,11 +49,13 @@
                                             class="input-material">
                                         <label for="register-username" class="label-material">Username</label>
                                     </div>
+                                    <div class="line"></div>
                                     <div class="form-group-material">
                                         <input id="register-password" type="password" name="registerPassword" required
                                             class="input-material">
                                         <label for="register-password" class="label-material">Password </label>
                                     </div>
+                                    <div class="line"></div>
                                     <div class="form-group-material">
                                         <input id="confirm-password" type="password" name="confirmPassword" required
                                             class="input-material" onkeyup="validate()"><span id="Warning"></span>
@@ -84,21 +86,25 @@
                                             class="input-material">
                                         <label for="register-name" class="label-material">Real Name </label>
                                     </div>
+                                    <div class="line"></div>
                                     <div class="form-group-material">
                                         <input id="register-email" type="email" name="registerEmail" required
                                             class="input-material">
                                         <label for="register-email" class="label-material">Email </label>
                                     </div>
+                                    <div class="line"></div>
                                     <div class="form-group-material">
                                         <input id="register-phone" type="text" name="registerPhone" required
                                             class="input-material">
                                         <label for="register-phone" class="label-material">Phone </label>
                                     </div>
+                                    <div class="line"></div>
                                     <div class="form-group-material">
                                         <input id="register-address" type="text" name="registerAddress" required
                                             class="input-material">
                                         <label for="register-address" class="label-material">Address </label>
                                     </div>
+                                    <div class="line"></div>
                                     <div class="form-group-material">
                                         <input id="register-zip" type="text" name="registerZip" required
                                             class="input-material">

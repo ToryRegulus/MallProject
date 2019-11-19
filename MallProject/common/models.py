@@ -29,14 +29,45 @@ class Users(models.Model):
 
     class Meta:
         db_table = 'users'  # 指定数据库表名（默认common_users)
-        ordering = ['id']   # 模型按ID排序
+        ordering = ['id']  # 模型按ID排序
 
 
 class Types(models.Model):
     """商品信息模型"""
-    name = models.CharField(max_length=32)      # 类别名称
-    pid = models.IntegerField(default=0)        # 父类别路径
-    path = models.CharField(max_length=255)     # 路径
+    name = models.CharField(max_length=32)  # 类别名称
+    pid = models.IntegerField(default=0)  # 父类别路径
+    path = models.CharField(max_length=255)  # 路径
 
     class Meta:
         db_table = 'type'
+
+
+class Goods(models.Model):
+    typeid = models.IntegerField()
+    goods = models.CharField(max_length=32)
+    company = models.CharField(max_length=50)
+    content = models.TextField()
+    price = models.FloatField()
+    picname = models.CharField(max_length=255)
+    store = models.IntegerField(default=0)
+    num = models.IntegerField(default=0)
+    clicknum = models.IntegerField(default=0)
+    state = models.IntegerField(default=1)
+    addtime = models.DateTimeField(default=datetime.now)
+
+    def toDict(self):
+        return {
+            'id': self.id,
+            'typeid': self.typeid,
+            'goods': self.goods,
+            'company': self.company,
+            'price': self.price,
+            'picname': self.picname,
+            'store': self.store,
+            'num': self.num,
+            'clicknum': self.clicknum,
+            'state': self.state
+        }
+
+    class Meta:
+        db_table = "goods"

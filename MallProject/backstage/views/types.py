@@ -4,7 +4,7 @@ from common.models import Types
 
 
 def index(request):
-    """商品信息主页"""
+    """商品类别主页"""
     type_list = Types.objects.extra(select={
         'path_id': 'concat(path, id)'
     }).order_by('path_id')
@@ -23,7 +23,7 @@ def index(request):
 
 
 def add(request, tid):
-    """添加商品信息"""
+    """添加商品类别"""
     # 获取父类别信息
     if tid == 0:
         context = {'pid': 0, 'path': '0,', 'name': '根类别'}
@@ -53,7 +53,7 @@ def insert(request):
 
 
 def edit(request, tid):
-    """修改商品信息"""
+    """修改商品类别"""
     try:
         ob = Types.objects.get(id=tid)
         context = {'type': ob}
@@ -78,7 +78,7 @@ def update(request, tid):
 
 
 def delete(request, tid):
-    """删除商品信息"""
+    """删除商品类别"""
     try:
         ob = Types.objects.get(id=tid)
 
