@@ -91,16 +91,37 @@ def insert(request):
         return render(request, 'backstage/info.html', context)
 
 
-def edit(request, uid):
+def edit(request, gid):
     """商品信息编辑"""
-    pass
+    try:
+        ob = Goods.objects.get(id=gid)
+        context = {'goods': ob}
+        return render(request, 'backstage/goods/edit.html', context)
+    except Exception as err:
+        print(err)
+        context = {'Info': 'Cannnot fetch the page', 'Detail': err}
+        return render(request, 'backstage/info.html', context)
 
 
-def update(request, uid):
+def update(request, gid):
     """执行编辑"""
-    pass
+    ob = Goods.objects.get(id=gid)
+    ob.goods = request.POST['commodityName']
+    ob.company = request.POST['Manufacturer']
+    ob.price = request.POST['unitPrice']
+    ob.store = request.POST['Inventory']
+    ob.content = request.POST['productIntroduction']
+    ob.save()
+    return redirect('/backstage/goods')
 
 
-def delete(request, uid):
+def delete(request, gid):
     """商品信息删除"""
-    pass
+    try:
+        ob = Goods.objects.get(id=gid)
+        ob.delete()
+        return redirect('/backstage/goods')
+    except Exception as err:
+        print(err)
+        context = {'Info': 'Delete Failed', 'Detail': err}
+        return render(request, 'backstage/info.html', context)
