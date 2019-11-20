@@ -43,16 +43,16 @@ class Types(models.Model):
 
 
 class Goods(models.Model):
-    typeid = models.IntegerField()
-    goods = models.CharField(max_length=32)
-    company = models.CharField(max_length=50)
-    content = models.TextField()
-    price = models.FloatField()
-    picname = models.CharField(max_length=255)
-    store = models.IntegerField(default=0)
-    num = models.IntegerField(default=0)
-    clicknum = models.IntegerField(default=0)
-    state = models.IntegerField(default=1)
+    typeid = models.IntegerField()  # 商品类别ID
+    goods = models.CharField(max_length=32)     # 商品名
+    company = models.CharField(max_length=50)   # 厂家
+    content = models.TextField()    # 商品介绍
+    price = models.FloatField()     # 单价
+    picname = models.CharField(max_length=255)  # 图片名
+    store = models.IntegerField(default=0)      # 库存
+    num = models.IntegerField(default=0)        # 数量
+    clicknum = models.IntegerField(default=0)   # 点击量
+    state = models.IntegerField(default=1)      # 状态
     addtime = models.DateTimeField(default=datetime.now)
 
     def toDict(self):
