@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="block">
-                    <div class="title"><strong>Edit Member Information</strong></div>
+                    <div class="title"><strong>Member Information</strong></div>
                     <div class="block-body">
                         <form id="edit-profile" action="{% url 'backstage_users_update' user.id %}"
                             class="form-horizontal" method="POST">
@@ -48,7 +48,7 @@
                                     <div class="form-group-material">
                                         <input id="register-username" type="text" disabled name="registerUsername"
                                             required class="input-material" value="{{ user.username }}">
-                                        <font>Account cannot be changed</font>
+                                        <font style="color: tomato">Account cannot be changed</font>
                                         <label for="register-username" class="label-material">Username</label>
                                     </div>
                                     <div class="form-group-material">

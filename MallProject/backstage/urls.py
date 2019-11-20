@@ -17,6 +17,11 @@ urlpatterns = [
     path('users/update/<int:uid>', users.update,
          name='backstage_users_update'),
     path('users/del/<int:uid>', users.delete, name='backstage_users_del'),
+    path('users/resetpwd/<int:uid>',
+         users.resetpwd,
+         name='backstage_users_resetpwd'),
+    path('users/reset/<int:uid>', users.do_reset,
+         name='backstage_users_reset'),
 
     # 后台商品目录路由
     path('types', types.index, name='backstage_types_index'),

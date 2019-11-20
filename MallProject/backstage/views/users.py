@@ -99,3 +99,33 @@ def delete(request, uid):
         print(err)
         context = {'Info': 'Delete Failed', 'Detail': err}
         return render(request, 'backstage/info.html', context)
+
+
+def resetpwd(request, uid):
+    """修改会员密码"""
+    try:
+        ob = Users.objects.get(id=uid)
+        context = {'user': ob}
+        return render(request, 'backstage/users/resetpwd.html', context)
+    except Exception as err:
+        print(err)
+        context = {'Info': 'Cannnot fetch the page', 'Detail': err}
+        return render(request, 'backstage/info.html', context)
+
+
+def do_reset(request, uid):
+    """提交修改密码"""
+    try:
+        ob = Users.objects.get(id=uid)
+
+        # 密码base64加密
+        pwd = request.POST['registerPassword']
+        pwd = base64.base64_encode(pwd)
+        ob.password = pwd
+
+        ob.save()
+        return redirect('/backstage/users')
+    except Exception as err:
+        print(err)
+        context = {'Info': 'Reset Password Failed', 'Detail': err}
+        return render(request, 'backstage/info.html', context)

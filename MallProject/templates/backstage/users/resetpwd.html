@@ -1,0 +1,103 @@
+{% extends 'backstage/base.html' %}
+
+{% block sidebar %}
+<ul class="list-unstyled">
+    <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
+    <li><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
+    <li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
+    <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Chart </a></li>
+    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
+            <i class="icon-windows"></i>Commodity Manage </a>
+        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+            <li><a href="{% url 'backstage_types_index' %}">Browse Category</a></li>
+            <li><a href="{% url 'backstage_types_add' 0 %}">Add Category</a></li>
+            <li><a href="{% url 'backstage_goods_index' %}">Commodity Info</a></li>
+            <li><a href="{% url 'backstage_goods_add' %}">Commodity Addition</a></li>
+        </ul>
+    </li>
+</ul>
+{% endblock %}
+
+{% block mainbody %}
+<!-- Page Header-->
+<div class="page-header no-margin-bottom">
+    <div class="container-fluid">
+        <h2 class="h5 no-margin-bottom">Reset Member Password</h2>
+    </div>
+</div>
+<!-- Breadcrumb-->
+<div class="container-fluid">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'backstage_index' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'backstage_users_index' %}">Members</a></li>
+        <li class="breadcrumb-item active">Reset Member Password </li>
+    </ul>
+</div>
+<section class="no-padding-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="block">
+                    <div class="title"><strong>Member Information</strong></div>
+                    <div class="block-body">
+                        <form id="edit-profile" action="{% url 'backstage_users_reset' user.id %}" class="form-horizontal" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group-material">
+                                        <input id="register-username" type="text" disabled name="registerUsername"
+                                            required class="input-material" value="{{ user.username }}">
+                                        <font style="color: tomato">Account cannot be changed</font>
+                                        <label for="register-username" class="label-material">Username</label>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group-material">
+                                        <input id="register-name" type="text" disabled name="registerName" required
+                                            class="input-material" value="{{ user.name }}">
+                                        <font style="color: tomato">Real Name cannot be changed</font>
+                                        <label for="register-name" class="label-material">Real Name </label>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group-material">
+                                        <input id="register-password" type="password" name="registerPassword" required
+                                            class="input-material">
+                                        <label for="register-password" class="label-material">Password </label>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="form-group-material">
+                                        <input id="confirm-password" type="password" name="confirmPassword" required
+                                            class="input-material" onkeyup="validate()"><span id="Warning"></span>
+                                        <label for="confirm-password" class="label-material">Confirm Password </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <br><br><br><br><br><br>
+                            <div class="form-group row">
+                                <div class="col-sm-12 ml-auto">
+                                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function validate() {
+        var pwd1 = document.getElementById("register-password").value;
+        var pwd2 = document.getElementById("confirm-password").value;
+
+        if (pwd1 != pwd2) {
+            document.getElementById("Warning").innerHTML = "<font color='red'>The password doesn't match</font>";
+            document.getElementById("button").disabled = true;
+        } else {
+            document.getElementById("Warning").innerHTML = "";
+        }
+    }
+</script>
+{% endblock %}

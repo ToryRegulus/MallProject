@@ -77,9 +77,13 @@
                                         {% endif %}
                                     </td>
                                     <td>
+                                        <a style="text-decoration: none;"
+                                            href="{% url 'backstage_users_resetpwd' vo.id %}" class='view-link'>Reset
+                                            Password</a>
+                                        &nbsp;&nbsp;&nbsp;
                                         <a style="text-decoration: none;" href="{% url 'backstage_users_edit' vo.id %}"
                                             class='view-link'>Edit</a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;
                                         <a style="text-decoration: none;" href="{% url 'backstage_users_del' vo.id %}"
                                             class='view-link' onclick="del()">Delete</a>
                                     </td>
@@ -95,21 +99,24 @@
                             <tr>
                                 <td>
                                     {% if userslist.has_previous %}
-                                    <font style="font-size: large;"><a style="text-decoration: none;" href="?page={{ userslist.previous_page_number }}">&laquo;</a></font>
+                                    <font style="font-size: large;"><a style="text-decoration: none;"
+                                            href="?page={{ userslist.previous_page_number }}">&laquo;</a></font>
                                     {% else %}
-                                        <font style="font-size: large;">&laquo;</font>
+                                    <font style="font-size: large;">&laquo;</font>
                                     {% endif %}
 
                                     {% for num in userslist.paginator.page_range %}
-                                        {% if num == userslist.number %}
-                                        <font style="font-size: large;">{{ num }}</font>
-                                        {% else %}
-                                        <font style="font-size: large;"><a style="text-decoration: none;" href="?page={{ num }}">{{ num }}</a></font>
-                                        {% endif %}
+                                    {% if num == userslist.number %}
+                                    <font style="font-size: large;">{{ num }}</font>
+                                    {% else %}
+                                    <font style="font-size: large;"><a style="text-decoration: none;"
+                                            href="?page={{ num }}">{{ num }}</a></font>
+                                    {% endif %}
                                     {% endfor %}
 
                                     {% if userslist.has_next %}
-                                    <font style="font-size: large;"><a style="text-decoration: none;" href="?page={{ userslist.next_page_number }}">&raquo;</a></font>
+                                    <font style="font-size: large;"><a style="text-decoration: none;"
+                                            href="?page={{ userslist.next_page_number }}">&raquo;</a></font>
                                     {% else %}
                                     <font style="font-size: large;">&raquo;</font>
                                     {% endif %}
