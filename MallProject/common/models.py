@@ -52,7 +52,7 @@ class Goods(models.Model):
     store = models.IntegerField(default=0)      # 库存
     num = models.IntegerField(default=0)        # 数量
     clicknum = models.IntegerField(default=0)   # 点击量
-    state = models.IntegerField(default=1)      # 状态
+    state = models.IntegerField(default=1)      # 状态（1：新商品，2：在售，3：已下架）
     addtime = models.DateTimeField(default=datetime.now)
 
     def toDict(self):
