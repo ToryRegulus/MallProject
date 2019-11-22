@@ -33,7 +33,7 @@ class Users(models.Model):
 
 
 class Types(models.Model):
-    """商品信息模型"""
+    """商品类别模型"""
     name = models.CharField(max_length=32)  # 类别名称
     pid = models.IntegerField(default=0)  # 父类别路径
     path = models.CharField(max_length=255)  # 路径
@@ -43,6 +43,7 @@ class Types(models.Model):
 
 
 class Goods(models.Model):
+    """商品信息模型"""
     typeid = models.IntegerField()  # 商品类别ID
     goods = models.CharField(max_length=32)     # 商品名
     company = models.CharField(max_length=50)   # 厂家
