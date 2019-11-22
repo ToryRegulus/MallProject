@@ -16,7 +16,7 @@ def index(request):
     }).order_by('path_id')
     for ob in tlist:
         ob.pname = '. . .' * (ob.path.count(',') - 1)
-    mod = Goods.objects
+    mod = Goods.objects.order_by('id')
     mywhere = []
 
     # 获取、判断并封装关keyword键搜索
