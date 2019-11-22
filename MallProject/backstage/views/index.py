@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
 from common.models import Users
-from .. import base64
+from common import base64
 
 # Create your views here.
 

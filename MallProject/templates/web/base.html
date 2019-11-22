@@ -38,32 +38,40 @@
             <div class="container clearfix">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="layout-header-logo navbar-left">
-                        <a target="_blank" href="./index.html" class="layout-header-logo-link" alt="魅族科技">
+                        <a href="{% url 'web_index' %}" class="layout-header-logo-link" alt="魅族科技">
                             <img src="{% static 'web/img/logo.png' %}">
                         </a>
                     </div>
                     <ul class="nav navbar-nav navbar-right layout-header-service clearfix">
                         <li class="layout-header-service-item" id="layoutHeaderUser">
-                            <a class="layout-header-service-link g-user" href="#">
-                                <i class="glyphicon glyphicon-user"></i>
+                            <a class="layout-header-service-link" href="#">
+                                <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;
+                                <span>{{ request.session.user.username }}</span>
                             </a>
                             <div class="layout-user-downmenu">
                                 <ul class="layout-user-downmenu-list">
+                                    {% if request.session.user %}
                                     <li class="layout-user-downmenu-item">
-                                        <a href="login.html" class="layout-user-downmenu-link">立即登录</a>
-                                    </li>
-                                    <li class="layout-user-downmenu-item">
-                                        <a href="register.html" target="_blank" class="layout-user-downmenu-link"
-                                            data-mtype="wmz_public_grzx_register">立即注册</a>
+                                        <a href="#" class="layout-user-downmenu-link"
+                                            data-mtype="wmz_public_grzx_myorder">个人中心</a>
                                     </li>
                                     <li class="layout-user-downmenu-item">
                                         <a href="#" class="layout-user-downmenu-link"
                                             data-mtype="wmz_public_grzx_myorder">我的订单</a>
                                     </li>
                                     <li class="layout-user-downmenu-item">
-                                        <a href="#" class="layout-user-downmenu-link"
-                                            data-mtype="wmz_public_grzx_mformy">M码通道</a>
+                                        <a href="{% url 'web_sign_out' %}" class="layout-user-downmenu-link"
+                                            data-mtype="wmz_public_grzx_mformy">退出</a>
                                     </li>
+                                    {% else %}
+                                    <li class="layout-user-downmenu-item">
+                                        <a href="{% url 'web_sign_in'%}" class="layout-user-downmenu-link">立即登录</a>
+                                    </li>
+                                    <li class="layout-user-downmenu-item">
+                                        <a href="{% url 'web_register' %}" class="layout-user-downmenu-link"
+                                            data-mtype="wmz_public_grzx_register">立即注册</a>
+                                    </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </li>
