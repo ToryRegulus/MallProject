@@ -7,7 +7,7 @@ urlpatterns = [
     # 后台管理员路由
     path('sign_in', index.sign_in, name='backstage_sign_in'),
     path('login', index.login, name='backstage_login'),
-    path('logout', index.logout, name='backstage_sign_out'),
+    path('sign_out', index.logout, name='backstage_sign_out'),
 
     # 会员信息管理路由
     path('users', users.index, name='backstage_users_index'),

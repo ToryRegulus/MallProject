@@ -2,7 +2,13 @@ from django.urls import path
 from web.views import index
 
 urlpatterns = [
-    path('', index.index, name='web_index'),            # 前台首页
-    path('list/', index.lists, name='web_list'),        # 商品列表
-    path('detail/<int:gid>', index.detail, name='web_detail'),   # 商品详情
+    # 前台主页路由
+    path('', index.index, name='web_index'),
+    path('list/', index.lists, name='web_list'),
+    path('detail/<int:gid>', index.detail, name='web_detail'),
+
+    # 会员中心路由
+    path('sign_in', index.sign_in, name='web_sign_in'),
+    path('login', index.login, name='web_login'),
+    path('sign_out', index.sign_out, name='web_sign_out'),
 ]

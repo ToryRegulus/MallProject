@@ -12,7 +12,7 @@ class ShopMiddleware(object):
         pass_url = [
             '/backstage/sign_in',
             '/backstage/login',
-            '/backstage/logout',
+            '/backstage/sign_out',
         ]
 
         # 获取当前请求路径

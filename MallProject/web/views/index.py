@@ -16,3 +16,18 @@ def lists(request, pindex=1):
 def detail(request, gid):
     """商品详情页"""
     return render(request, 'web/detail.html')
+
+
+def sign_in(request):
+    """用户登录"""
+    pass
+
+
+def login(request):
+    """执行登录"""
+    pass
+
+
+def sign_out(request):
+    """用户登出"""
+    pass
