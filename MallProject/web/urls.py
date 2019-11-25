@@ -5,6 +5,7 @@ urlpatterns = [
     # 前台主页路由
     path('', index.index, name='web_index'),
     path('list', index.lists, name='web_list'),
+    path('list/<int:pIndex>', index.lists, name='web_list'),
     path('detail/<int:gid>', index.detail, name='web_detail'),
 
     # 会员中心路由

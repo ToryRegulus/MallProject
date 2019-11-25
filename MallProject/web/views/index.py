@@ -1,24 +1,39 @@
 from django.shortcuts import render, redirect, reverse
-from common.models import Users
+from common.models import Users, Types, Goods
 from datetime import datetime
 from common import base64
 
-# Create your views here.
+
+def load_info(request):
+    """公共信息加载函数"""
+    lists = Types.objects.filter(pid=0)
+    context = {'typelist': lists}
+    return context
 
 
 def index(request):
     """商品首页"""
-    return render(request, 'web/index.html')
+    context = load_info(request)
+    return render(request, 'web/index.html', context)
 
 
 def lists(request, pindex=1):
     """商品列表页"""
-    return render(request, 'web/list.html')
+    context = load_info(request)
+    ob = Goods.objects
+    tid = int(request.GET.get('tid', 0))
+    if tid > 0:
+        lists = ob.filter(typeid__in=Types.objects.only('id').filter(pid=tid))
+    else:
+        lists = ob.filter()
+    context['goodslist'] = lists
+    return render(request, 'web/list.html', context)
 
 
 def detail(request, gid):
     """商品详情页"""
-    return render(request, 'web/detail.html')
+    context = load_info(request)
+    return render(request, 'web/detail.html', context)
 
 
 def sign_in(request):

@@ -21,7 +21,6 @@
     <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
     <!-- 自定义 -->
     <link rel="stylesheet" type="text/css" href="{% static 'web/css/global.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'web/css/app.css' %}">
 
     {% block mylink %}
     {% endblock %}
@@ -84,121 +83,20 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right layout-header-nav clearfix">
                         <li class="layout-header-nav-item">
-                            <a href="./index.html" class="layout-header-nav-link">魅族商城 </a>
+                            <a href="{% url 'web_index' %}" class="layout-header-nav-link">商城首页 </a>
                             <p class="line-top hidden-xs"></p>
                         </li>
+                        {% for type in typelist %}
                         <li class="layout-header-nav-item">
-                            <a href="./list.html" class="layout-header-nav-link">魅族手机</a>
+                            <a href="{% url 'web_list' %}?tid={{ type.id }}" class="layout-header-nav-link">{{ type.name }}</a>
                         </li>
-                        <li class="layout-header-nav-item"><a href="./list.html" class="layout-header-nav-link">魅蓝手机</a>
-                        </li>
-                        <li class="layout-header-nav-item"><a href="./list.html" class="layout-header-nav-link">魅族声学</a>
-                        </li>
-                        <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">智能·配件</a></li>
-                        <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">服务</a></li>
-                        <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">专卖店</a></li>
-                        <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">Flyme</a></li>
-                        <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">社区</a></li>
+                        {% endfor %}
+                        <li class="layout-header-nav-item"><a href="https://bbs.meizu.cn/" class="layout-header-nav-link">社区</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container-fluid -->
-            <!-- 鼠标经过出现内容 -->
-            <div class="layout-header-nav-child">
-                <div class="container">
-                    <ul class="layout-header-nav-child-list first">
-                        <li class="layout-header-nav-child-item">
-                            <a class="layout-header-nav-child-link" target="_blank" href="#">
-                                <div class="layout-header-nav-child-box">
-                                    <img src="{% static 'web/img/nav1.jpg' %}" class="layout-header-nav-child-img"
-                                        alt="PRO 7">
-                                </div>
-                                <p class="layout-header-nav-child-name">
-                                    PRO 7
-                                </p>
-                                <p class="layout-header-nav-child-bottom">
-                                    <span class="layout-header-nav-child-price">2880</span>起
-                                </p>
-                            </a>
-                        </li>
-                        <li class="layout-header-nav-child-item">
-                            <a class="layout-header-nav-child-link" target="_blank" href="#">
-                                <div class="layout-header-nav-child-box">
-                                    <img src="{% static 'web/img/nav2.png' %}" class="layout-header-nav-child-img"
-                                        alt="PRO 7 Plus">
-                                </div>
-                                <p class="layout-header-nav-child-name">
-                                    PRO 7 Plus
-                                </p>
-                                <p class="layout-header-nav-child-bottom">
-                                    <span class="layout-header-nav-child-price">3580</span>起
-                                </p>
-                            </a>
-                        </li>
-                        <li class="layout-header-nav-child-item">
-                            <a class="layout-header-nav-child-link" target="_blank" href="#">
-                                <div class="layout-header-nav-child-box">
-                                    <img src="{% static 'web/img/nav3.jpg' %}" class="layout-header-nav-child-img"
-                                        alt="PRO 6 Plus">
-                                </div>
-                                <p class="layout-header-nav-child-name">
-                                    PRO 6 Plus
-                                </p>
-                                <p class="layout-header-nav-child-bottom">
-                                    <span class="layout-header-nav-child-price">2699</span>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="layout-header-nav-child-item">
-                            <a class="layout-header-nav-child-link" target="_blank" href="#">
-                                <div class="layout-header-nav-child-box">
-                                    <img src="{% static 'web/img/nav4.png' %}" class="layout-header-nav-child-img"
-                                        alt="PRO 6s">
-                                </div>
-                                <p class="layout-header-nav-child-name">
-                                    PRO 6s
-                                </p>
-                                <p class="layout-header-nav-child-bottom">
-                                    <span class="layout-header-nav-child-price">2299</span>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="layout-header-nav-child-item">
-                            <a class="layout-header-nav-child-link" target="_blank" href="#">
-                                <div class="layout-header-nav-child-box">
-                                    <img src="{% static 'web/img/nav5.jpg' %}" class="layout-header-nav-child-img"
-                                        alt="MX6">
-                                </div>
-                                <p class="layout-header-nav-child-name">
-                                    MX6
-                                </p>
-                                <p class="layout-header-nav-child-bottom">
-                                    <span class="layout-header-nav-child-price">1599</span>
-                                </p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- 移动端结构 -->
-        <div class="scroll-view">
-            <header id="header" class="header">
-                <div class="logo">
-                    <a href="./index.html">
-                        <img src="{% static 'web/img/app/mlogo1.jpg' %}">
-                    </a>
-                </div>
-
-                <div class="qtool">
-                    <a id="btn-search"><i class="glyphicon  glyphicon-search"></i></a>
-                    <a href="#"><i class="glyphicon  glyphicon-shopping-cart"></i></a>
-                    <a id="user-name" href="#"><i class="glyphicon glyphicon-user"></i></a>
-                </div>
-            </header>
-        </div>
     </div><!-- 导航 E-->
 
     <!-- 主内容区域 -->
