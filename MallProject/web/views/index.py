@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from common.models import Users, Types, Goods
+from django.core.paginator import Paginator
 from datetime import datetime
 from common import base64
 
@@ -26,13 +27,24 @@ def lists(request, pindex=1):
         lists = ob.filter(typeid__in=Types.objects.only('id').filter(pid=tid))
     else:
         lists = ob.filter()
-    context['goodslist'] = lists
+
+    # 实现分页功能
+    paginator = Paginator(lists, 8)  # 实例化Paginator, 每页显示8条数据
+    page = request.GET.get('page', 1)
+    Pag = paginator.page(page)
+
+    context['goodslist'] = Pag
+
     return render(request, 'web/list.html', context)
 
 
 def detail(request, gid):
     """商品详情页"""
     context = load_info(request)
+    ob = Goods.objects.get(id=gid)
+    ob.clicknum += 1
+    ob.save()
+    context['goods'] = ob
     return render(request, 'web/detail.html', context)
 
 

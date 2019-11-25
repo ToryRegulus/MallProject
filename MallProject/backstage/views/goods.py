@@ -6,8 +6,6 @@ from datetime import datetime
 from PIL import Image
 import time
 
-# Create your views here.
-
 
 def index(request):
     """商品信息主页面"""
@@ -46,7 +44,7 @@ def index(request):
         vo.typename = ty.name
 
     # 实现分页功能
-    paginator = Paginator(good_list, 10)  # 实例化Paginator, 每页显示3条数据
+    paginator = Paginator(good_list, 10)  # 实例化Paginator, 每页显示10条数据
     page = request.GET.get('page', 1)
     Pag = paginator.page(page)
 

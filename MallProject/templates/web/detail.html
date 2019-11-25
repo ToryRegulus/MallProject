@@ -13,8 +13,8 @@
         <!-- 面包屑 导航 -->
         <div class="ml-nav hidden-xs hidden-sm">
             <ol class="breadcrumb">
-                <li><a href="./index.html">首页</a></li>
-                <li><a href="#"> 魅蓝 X</a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
             </ol>
         </div>
         <!-- 面包屑 导航 E-->
@@ -25,13 +25,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content preview-booth pt10">
                         <div role="tabpanel" class="tab-pane active mod-pic" id="list-p1">
-                            <img src="{% static 'web/img/mlx15.jpg' %}" width="375" height="375" class="sImg">
-                        </div>
-                        <div role="tabpanel" class="tab-pane mod-pic" id="list-p2">
-                            <img src="{% static 'web/img/mlx2.jpg' %}" width="375" height="375" class="sImg">
-                        </div>
-                        <div role="tabpanel" class="tab-pane mod-pic" id="list-p3">
-                            <img src="{% static 'web/img/mlx3.jpg' %}" width="375" height="375" class="sImg">
+                            <img src="/static/commodity/{{ goods.picname }}" width="375" height="375" class="sImg">
                         </div>
                     </div>
 
@@ -39,17 +33,7 @@
                     <ul class="nav nav-tabs preview-thumb clearfix " role="tablist">
                         <li role="presentation" class="active">
                             <a href="#list-p1" aria-controls="list-p1" role="tab" data-toggle="tab">
-                                <img src="{% static 'web/img/mlx4.jpg' %}" style="display: inline;" width="75" height="75">
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#list-p2" aria-controls="list-p2" role="tab" data-toggle="tab">
-                                <img src="{% static 'web/img/mlx5.jpg' %}" style="display: inline;" width="75" height="75">
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#list-p3" aria-controls="list-p3" role="tab" data-toggle="tab">
-                                <img src="{% static 'web/img/mlx6.jpg' %}" style="display: inline;" width="75" height="75">
+                                <img src="/static/commodity/s_{{ goods.picname }}" style="display: inline;" width="75" height="75">
                             </a>
                         </li>
                     </ul>
@@ -59,8 +43,8 @@
             <div class="col-md-7 col-sm-12 col-xs-12 pt10">
                 <div class="property hidden-xs hidden-sm" id="property">
                     <div class="property-hd">
-                        <h1>魅蓝 X</h1>
-                        <p class="mod-info active">32G直降200元 原价1699元 高清屏安全快充 </p>
+                        <h1>{{ goods.goods }}</h1>
+                        <p class="mod-info active">双11促销，消费满800元立减50元 </p>
                     </div>
                     <div class="property-sell">
                         <dl class="property-sell-price clearfix">
@@ -70,23 +54,13 @@
                             <dd>
                                 <div class="mod-price">
                                     <small>¥</small>
-                                    <span id="J_price" class="vm-money">1499.00</span>
+                                    <span id="J_price" class="vm-money">{{ goods.price }}</span>
                                 </div>
                                 <div class="mod-original" id="J_originalPrice" style="display:none;"></div>
                                 <div class="mod-activity">
                                 </div>
                                 <div class="mod-countdown" id="J_discountCountDown" style="display:none;">
                                 </div>
-                            </dd>
-                        </dl>
-                        <dl class="property-sell-coupon clearfix" id="J_prodPromo">
-                            <dt class="vm-metatit">领<span class="s-space"></span><span class="s-space"></span>券：
-                            </dt>
-                            <dd>
-                                <p id="J_promoInner">
-                                    <span class="vm-tag multiple"><em>满699减10.00</em></span></p>
-                                <a class="vm-more" data-mtype="store_de_coupon_more" id="J_promoMore"
-                                    href="#">更多&gt;</a>
                             </dd>
                         </dl>
                     </div>
