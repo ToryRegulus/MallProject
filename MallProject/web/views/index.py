@@ -21,7 +21,7 @@ def index(request):
 def lists(request, pindex=1):
     """商品列表页"""
     context = load_info(request)
-    ob = Goods.objects
+    ob = Goods.objects.order_by('id')
     tid = int(request.GET.get('tid', 0))
     if tid > 0:
         lists = ob.filter(typeid__in=Types.objects.only('id').filter(pid=tid))

@@ -1,5 +1,6 @@
 from django.urls import path
-from web.views import index
+from web.views import index, cart
+
 
 urlpatterns = [
     # 前台主页路由
@@ -14,4 +15,11 @@ urlpatterns = [
     path('sign_out', index.sign_out, name='web_sign_out'),
     path('register', index.register, name='web_register'),
     path('regist', index.regist, name='web_regist'),
+
+    # 购物车路由
+    path('cart', cart.index, name='cart_index'),
+    path('cart/add/<int:gid>', cart.add, name='cart_add'),
+    path('cart/del/<int:gid>', cart.delete, name='cart_del'),
+    path('cart/clear', cart.clear, name='cart_clear'),
+    path('cart/change', cart.change, name='cart_change'),
 ]
