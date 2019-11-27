@@ -1,5 +1,5 @@
 from django.urls import path
-from web.views import index, cart, orders
+from web.views import index, cart, orders, vip
 
 
 urlpatterns = [
@@ -27,4 +27,12 @@ urlpatterns = [
     path('orders/add', orders.add, name='orders_add'),
     path('orders/confirm', orders.confirm, name='orders_confirm'),
     path('orders/insert', orders.insert, name='orders_insert'),
+
+    # 会员中心
+    path('vip/orders', vip.viporders, name='vip_orders'),
+    path('vip/odstate', vip.odstate, name='vip_odstate'),
+    # path('vip/info', vip.info, name='vip_info'),
+    # path('vip/update', vip.update, name='vip_update'),
+    # path('vip/resetps', vip.resetps, name='vip_resetps'),
+    # path('vip/doresetps', vip.doresetps, name='vip_doresetps'),
 ]

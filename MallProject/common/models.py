@@ -18,6 +18,7 @@ class Users(models.Model):
 
     def toDict(self):
         return {
+            'id': self.id,
             'username': self.username,
             'name': self.name,
             'password': self.password,
@@ -77,26 +78,26 @@ class Goods(models.Model):
 
 class Orders(models.Model):
     """订单模型"""
-    uid = models.IntegerField()
-    linkman = models.CharField(max_length=32)
-    address = models.CharField(max_length=255)
-    code = models.CharField(max_length=6)
-    phone = models.CharField(max_length=16)
-    addtime = models.DateTimeField(default=datetime.now)
-    total = models.FloatField()
-    state = models.IntegerField()
+    uid = models.IntegerField()     # 下单者ID
+    linkman = models.CharField(max_length=32)       # 下单者名称
+    address = models.CharField(max_length=255)      # 地址
+    code = models.CharField(max_length=6)           # 邮编
+    phone = models.CharField(max_length=16)         # 联系电话
+    addtime = models.DateTimeField(default=datetime.now)    # 添加时间
+    total = models.FloatField()     # 总金额
+    state = models.IntegerField()   # 订单状态（0.待发货，1.已发货，2。已完成，3.无效订单）
 
     class Meta:
-        db_table = "orders"  # 更改表名
+        db_table = 'orders'  # 更改表名
 
 
 class Detail(models.Model):
     """订单详情模型"""
-    orderid = models.IntegerField()
-    goodsid = models.IntegerField()
-    name = models.CharField(max_length=32)
-    price = models.FloatField()
-    num = models.IntegerField()
+    orderid = models.IntegerField()     # 订单ID
+    goodsid = models.IntegerField()     # 商品ID
+    name = models.CharField(max_length=32)      # 商品名
+    price = models.FloatField()     # 价格
+    num = models.IntegerField()     # 购买数量
 
     class Meta:
-        db_table = "detail"  # 更改表名
+        db_table = 'detail'  # 更改表名
