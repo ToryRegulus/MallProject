@@ -1,4 +1,4 @@
-from backstage.views import index, users, types, goods
+from backstage.views import index, users, types, goods, orders
 from django.urls import path
 
 urlpatterns = [
@@ -40,4 +40,11 @@ urlpatterns = [
     path('goods/update/<int:gid>', goods.update,
          name='backstage_goods_update'),
     path('goods/del/<int:gid>', goods.delete, name='backstage_goods_del'),
+
+    # 订单管理
+    path('orders', orders.index, name='myadmin_orders_index'),
+    path('orders/<int:pIndex>', orders.index, name='myadmin_orders_index'),
+    path('orders/detail/<int:oid>', orders.detail,
+         name='myadmin_orders_detail'),
+    path('orders/state', orders.state, name='myadmin_orders_state'),
 ]
