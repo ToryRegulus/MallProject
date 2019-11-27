@@ -24,6 +24,7 @@ class Users(models.Model):
             'address': self.address,
             'phone': self.phone,
             'email': self.email,
+            'code': self.code,
             'state': self.state,
         }
 
@@ -71,4 +72,31 @@ class Goods(models.Model):
         }
 
     class Meta:
-        db_table = "goods"
+        db_table = 'goods'
+
+
+class Orders(models.Model):
+    """订单模型"""
+    uid = models.IntegerField()
+    linkman = models.CharField(max_length=32)
+    address = models.CharField(max_length=255)
+    code = models.CharField(max_length=6)
+    phone = models.CharField(max_length=16)
+    addtime = models.DateTimeField(default=datetime.now)
+    total = models.FloatField()
+    state = models.IntegerField()
+
+    class Meta:
+        db_table = "orders"  # 更改表名
+
+
+class Detail(models.Model):
+    """订单详情模型"""
+    orderid = models.IntegerField()
+    goodsid = models.IntegerField()
+    name = models.CharField(max_length=32)
+    price = models.FloatField()
+    num = models.IntegerField()
+
+    class Meta:
+        db_table = "detail"  # 更改表名

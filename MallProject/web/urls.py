@@ -1,5 +1,5 @@
 from django.urls import path
-from web.views import index, cart
+from web.views import index, cart, orders
 
 
 urlpatterns = [
@@ -22,4 +22,9 @@ urlpatterns = [
     path('cart/del/<int:gid>', cart.delete, name='cart_del'),
     path('cart/clear', cart.clear, name='cart_clear'),
     path('cart/change', cart.change, name='cart_change'),
+
+    # 订单处理
+    path('orders/add', orders.add, name='orders_add'),
+    path('orders/confirm', orders.confirm, name='orders_confirm'),
+    path('orders/insert', orders.insert, name='orders_insert'),
 ]
