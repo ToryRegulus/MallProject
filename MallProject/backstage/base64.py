@@ -33,7 +33,7 @@ def encode(origin):
         # 补齐三个字节，每个字节补充 0000 0000
         remain_part = ''.join(base64_bytes[3 * nums:]) + (3 - remain) * 8 * '0'
 
-        # 取前（剩余字节+1）个字节
+        # 取前剩余字节+1个字节
         tmp_unit = [int(remain_part[x:x + 6], 2)
                     for x in [0, 6, 12, 18]][:remain + 1]
 
