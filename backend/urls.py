@@ -42,9 +42,8 @@ urlpatterns = [
     path('goods/del/<int:gid>', goods.delete, name='backstage_goods_del'),
 
     # 订单管理
-    path('orders', orders.index, name='myadmin_orders_index'),
-    path('orders/<int:pIndex>', orders.index, name='myadmin_orders_index'),
+    path('orders', orders.index, name='backstage_orders_index'),
     path('orders/detail/<int:oid>', orders.detail,
-         name='myadmin_orders_detail'),
-    path('orders/state', orders.state, name='myadmin_orders_state'),
+         name='backstage_orders_detail'),
+    path('orders/state', orders.state, name='backstage_orders_state'),
 ]

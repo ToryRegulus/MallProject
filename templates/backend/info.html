@@ -1,0 +1,54 @@
+{% extends 'backend/base.html' %}
+
+{% block sidebar %}
+    <ul class="list-unstyled">
+        <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
+        <li><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
+        <li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
+        <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Order </a></li>
+        <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
+            <i class="icon-windows"></i>Commodity Manage </a>
+            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                <li><a href="{% url 'backstage_types_index' %}">Browse Category</a></li>
+                <li><a href="{% url 'backstage_types_add' 0 %}">Add Category</a></li>
+                <li><a href="{% url 'backstage_goods_index' %}">Commodity Info</a></li>
+                <li><a href="{% url 'backstage_goods_add' %}">Commodity Addition</a></li>
+            </ul>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block mainbody %}
+    <!-- Page Header-->
+    <div class="page-header">
+        <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">Operation Information Prompt</h2>
+        </div>
+    </div>
+    <!-- Breadcrumb-->
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'backstage_index' %}">Home</a></li>
+            <li class="breadcrumb-item active">Information Cue</li>
+        </ul>
+    </div>
+    <section class="no-padding-top no-padding-bottom">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="statistic-block block">
+                        <div class="progress-details d-flex align-items-end justify-content-between">
+                            <div class="title">
+                                <strong>{{ Info }}</strong><br><br>
+                                <div class="block-body">
+                                    <strong>Detail: </strong>
+                                    {{ Detail }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

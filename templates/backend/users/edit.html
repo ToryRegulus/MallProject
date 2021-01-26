@@ -1,0 +1,138 @@
+{% extends 'backend/base.html' %}
+
+{% block sidebar %}
+    <ul class="list-unstyled">
+        <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
+        <li><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
+        <li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
+        <li><a href="charts.html"><i class="fa fa-bar-chart"></i>Order </a></li>
+        <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
+            <i class="icon-windows"></i>Commodity Manage </a>
+            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                <li><a href="{% url 'backstage_types_index' %}">Browse Category</a></li>
+                <li><a href="{% url 'backstage_types_add' 0 %}">Add Category</a></li>
+                <li><a href="{% url 'backstage_goods_index' %}">Commodity Info</a></li>
+                <li><a href="{% url 'backstage_goods_add' %}">Commodity Addition</a></li>
+            </ul>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block mainbody %}
+    <!-- Page Header-->
+    <div class="page-header no-margin-bottom">
+        <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">Edit Member Information</h2>
+        </div>
+    </div>
+    <!-- Breadcrumb-->
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'backstage_index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'backstage_users_index' %}">Members</a></li>
+            <li class="breadcrumb-item active">Edit Member Information</li>
+        </ul>
+    </div>
+    <section class="no-padding-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="block">
+                        <div class="title"><strong>Member Information</strong></div>
+                        <div class="block-body">
+                            <form id="edit-profile" action="{% url 'backstage_users_update' user.id %}"
+                                  class="form-horizontal" method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group-material">
+                                            <input id="register-username" type="text" disabled name="registerUsername"
+                                                   required class="input-material" value="{{ user.username }}">
+                                            <font style="color: tomato">Account cannot be changed</font>
+                                            <label for="register-username" class="label-material">Username</label>
+                                        </div>
+                                        <div class="form-group-material">
+                                            <input id="register-name" type="text" name="registerName" required
+                                                   class="input-material" value="{{ user.name }}">
+                                            <label for="register-name" class="label-material">Real Name </label>
+                                        </div>
+                                        <div class="form-group-material">
+                                            <input id="register-email" type="email" name="registerEmail" required
+                                                   class="input-material" value="{{ user.email }}">
+                                            <label for="register-email" class="label-material">Email </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">Gender</label>
+                                    <div class="col-sm-9">
+                                        <div class="i-checks">
+                                            <input id="MaleRadio" type="radio" {% if user.sex == 1 %}checked{% endif %}
+                                                   value="1" name="gender" class="radio-template">
+                                            <label for="MaleRadio">Male</label>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input id="FemaleRadio" type="radio"
+                                                   {% if user.sex == 0 %}checked{% endif %}
+                                                   value="0" name="gender" class="radio-template">
+                                            <label for="FemaleRadio">Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <label class="col-sm-3 form-control-label">Status</label>
+                                    <div class="col-sm-9">
+                                        <div class="i-checks">
+                                            <input id="NoramlRadio" type="radio"
+                                                   {% if user.state == 1 %}checked{% endif %}
+                                                   value="1" name="status" class="radio-template">
+                                            <label for="NoramlRadio">Normal</label>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input id="DisabledRadio" type="radio"
+                                                   {% if user.state == 2 %}checked{% endif %} value="2" name="status"
+                                                   class="radio-template">
+                                            <label for="DisabledRadio">Disabled</label>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input id="AdminRadio" type="radio"
+                                                   {% if user.state == 0 %}checked{% endif %}
+                                                   value="0" name="status" class="radio-template">
+                                            <label for="AdminRadio">Administrator</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group-material">
+                                            <input id="register-phone" type="text" name="registerPhone" required
+                                                   class="input-material" value="{{ user.phone }}">
+                                            <label for="register-phone" class="label-material">Phone </label>
+                                        </div>
+                                        <div class="form-group-material">
+                                            <input id="register-address" type="text" name="registerAddress" required
+                                                   class="input-material" value="{{ user.address }}">
+                                            <label for="register-address" class="label-material">Address </label>
+                                        </div>
+                                        <div class="form-group-material">
+                                            <input id="register-zip" type="text" name="registerZip" required
+                                                   class="input-material" value="{{ user.code }}">
+                                            <label for="register-zip" class="label-material">Zip </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                                <br><br><br><br><br><br>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 ml-auto">
+                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

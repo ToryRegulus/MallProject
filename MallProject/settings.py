@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'MallProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'shop_db',
+        'NAME': 'shop',
         'USER': 'root',
         'PASSWORD': 'PASSWORD',
         'HOST': 'localhost',

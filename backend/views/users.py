@@ -10,18 +10,18 @@ from .. import base64
 
 def index(request):
     """会员信息主页"""
-    umod = Users.objects
+    user_mod = Users.objects
     mywhere = []
 
     # 获取、判断并封装关keyword键搜索
     kw = request.GET.get('keyword', None)
     if kw:
         # 查询账户或真实姓名中只要含有关键字的都可以
-        user_list = umod.filter(
+        user_list = user_mod.filter(
             Q(username__contains=kw) | Q(name__contains=kw))
         mywhere.append('keyword=' + kw)
     else:
-        user_list = umod.filter()
+        user_list = user_mod.filter()
     # 获取、判断并封装性别sex搜索条件
     sex = request.GET.get('sex', '')
     if sex != '':
@@ -29,17 +29,17 @@ def index(request):
         mywhere.append('sex=' + sex)
 
     # 实现分页功能
-    paginator = Paginator(user_list, 10)  # 实例化Paginator, 每页显示3条数据
+    paginator = Paginator(user_list, 10)  # 实例化Paginator, 每页显示10条数据
     page = request.GET.get('page', 1)
-    Pag = paginator.page(page)
+    pag = paginator.page(page)
 
-    context = {'userslist': Pag, 'mywhere': mywhere}
-    return render(request, 'backstage/users/index.html', context)
+    context = {'userslist': pag, 'mywhere': mywhere}
+    return render(request, 'backend/users/index.html', context)
 
 
 def add(request):
     """添加会员信息"""
-    return render(request, 'backstage/users/add.html')
+    return render(request, 'backend/users/add.html')
 
 
 def insert(request):
@@ -72,7 +72,7 @@ def insert(request):
     except Exception as err:
         print(err)
         context = {'Info': 'Addition Failed', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def edit(request, uid):
@@ -80,11 +80,11 @@ def edit(request, uid):
     try:
         ob = Users.objects.get(id=uid)
         context = {'user': ob}
-        return render(request, 'backstage/users/edit.html', context)
+        return render(request, 'backend/users/edit.html', context)
     except Exception as err:
         print(err)
         context = {'Info': 'Cannnot fetch the page', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def update(request, uid):
@@ -103,7 +103,7 @@ def update(request, uid):
     except Exception as err:
         print(err)
         context = {'Info': 'Edit Failed', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def delete(request, uid):
@@ -115,7 +115,7 @@ def delete(request, uid):
     except Exception as err:
         print(err)
         context = {'Info': 'Delete Failed', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def resetpwd(request, uid):
@@ -123,11 +123,11 @@ def resetpwd(request, uid):
     try:
         ob = Users.objects.get(id=uid)
         context = {'user': ob}
-        return render(request, 'backstage/users/resetpwd.html', context)
+        return render(request, 'backend/users/resetpwd.html', context)
     except Exception as err:
         print(err)
         context = {'Info': 'Cannnot fetch the page', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def do_reset(request, uid):
@@ -145,4 +145,4 @@ def do_reset(request, uid):
     except Exception as err:
         print(err)
         context = {'Info': 'Reset Password Failed', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)

@@ -49,7 +49,7 @@ def index(request):
     Pag = paginator.page(page)
 
     context = {'goodslist': Pag, 'mywhere': mywhere, 'typelist': tlist}
-    return render(request, 'backstage/goods/index.html', context)
+    return render(request, 'backend/goods/index.html', context)
 
 
 def add(request):
@@ -63,7 +63,7 @@ def add(request):
         ob.pname = '. . . ' * (ob.path.count(',') - 1)
 
     context = {'typelist': type_list}
-    return render(request, 'backstage/goods/add.html', context)
+    return render(request, 'backend/goods/add.html', context)
 
 
 def insert(request):
@@ -76,7 +76,7 @@ def insert(request):
                 'Info': 'Addition Failed',
                 'Detail': 'No images detected'
             }
-            return render(request, 'backstage/info.html', context)
+            return render(request, 'backend/info.html', context)
         filename = str(time.time()) + '.' + myfile.name.split('.').pop()
         with open('./Mallproject/static/commodity/' + filename,
                   'wb+') as destination:
@@ -114,7 +114,7 @@ def insert(request):
     except Exception as err:
         print(err)
         context = {'Info': 'Addition Failed', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def edit(request, gid):
@@ -122,11 +122,11 @@ def edit(request, gid):
     try:
         ob = Goods.objects.get(id=gid)
         context = {'goods': ob}
-        return render(request, 'backstage/goods/edit.html', context)
+        return render(request, 'backend/goods/edit.html', context)
     except Exception as err:
         print(err)
         context = {'Info': 'Cannnot fetch the page', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def update(request, gid):
@@ -150,4 +150,4 @@ def delete(request, gid):
     except Exception as err:
         print(err)
         context = {'Info': 'Delete Failed', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)

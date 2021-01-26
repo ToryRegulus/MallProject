@@ -19,7 +19,7 @@ def index(request):
     Pag = paginator.page(page)
 
     context = {'typeslist': Pag}
-    return render(request, 'backstage/types/index.html', context)
+    return render(request, 'backend/types/index.html', context)
 
 
 def add(request, tid):
@@ -34,7 +34,7 @@ def add(request, tid):
             'path': ob.path + str(ob.id) + ",",
             'name': ob.name
         }
-    return render(request, "backstage/types/add.html", context)
+    return render(request, "backend/types/add.html", context)
 
 
 def insert(request):
@@ -49,7 +49,7 @@ def insert(request):
     except Exception as err:
         print(err)
         context = {'Info': 'Addition Failed', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def edit(request, tid):
@@ -57,11 +57,11 @@ def edit(request, tid):
     try:
         ob = Types.objects.get(id=tid)
         context = {'type': ob}
-        return render(request, 'backstage/types/edit.html', context)
+        return render(request, 'backend/types/edit.html', context)
     except Exception as err:
         print(err)
         context = {'Info': 'Cannnot fetch the page', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def update(request, tid):
@@ -74,7 +74,7 @@ def update(request, tid):
     except Exception as err:
         print(err)
         context = {'Info': 'Edit Failed', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)
 
 
 def delete(request, tid):
@@ -88,7 +88,7 @@ def delete(request, tid):
                 'Info':
                 'This category contains subcategory and cannot be removed'
             }
-            return render(request, 'backstage/info.html', context)
+            return render(request, 'backend/info.html', context)
         else:
             ob.delete()
 
@@ -96,4 +96,4 @@ def delete(request, tid):
     except Exception as err:
         print(err)
         context = {'Info': 'Delete Failed', 'Detail': err}
-        return render(request, 'backstage/info.html', context)
+        return render(request, 'backend/info.html', context)

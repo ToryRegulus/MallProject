@@ -9,12 +9,12 @@ from common import base64
 
 def index(request):
     """网站后台主页面"""
-    return render(request, 'backstage/index.html')
+    return render(request, 'backend/index.html')
 
 
 def sign_in(request):
     """登录页面"""
-    return render(request, 'backstage/login.html')
+    return render(request, 'backend/login.html')
 
 
 def login(request):
@@ -46,7 +46,7 @@ def login(request):
     except Exception as err:
         context = {'info': 'Incorrect username or password'}
         print(err)
-    return render(request, 'backstage/login.html', context)
+    return render(request, 'backend/login.html', context)
 
 
 def logout(request):
