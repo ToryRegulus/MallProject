@@ -45,7 +45,7 @@ def insert(request):
         ob.pid = request.POST['PID']
         ob.path = request.POST['PATH']
         ob.save()
-        return redirect('/backstage/types')
+        return redirect('/backend/types')
     except Exception as err:
         print(err)
         context = {'Info': 'Addition Failed', 'Detail': err}
@@ -70,7 +70,7 @@ def update(request, tid):
         ob = Types.objects.get(id=tid)
         ob.name = request.POST['categoryName']
         ob.save()
-        return redirect('/backstage/types')
+        return redirect('/backend/types')
     except Exception as err:
         print(err)
         context = {'Info': 'Edit Failed', 'Detail': err}
@@ -92,7 +92,7 @@ def delete(request, tid):
         else:
             ob.delete()
 
-        return redirect('/backstage/types')
+        return redirect('/backend/types')
     except Exception as err:
         print(err)
         context = {'Info': 'Delete Failed', 'Detail': err}

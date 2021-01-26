@@ -110,7 +110,7 @@ def insert(request):
         ob.state = 1
         ob.addtime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.save()
-        return redirect('/backstage/goods')
+        return redirect('/backend/goods')
     except Exception as err:
         print(err)
         context = {'Info': 'Addition Failed', 'Detail': err}
@@ -138,7 +138,7 @@ def update(request, gid):
     ob.store = request.POST['Inventory']
     ob.content = request.POST['productIntroduction']
     ob.save()
-    return redirect('/backstage/goods')
+    return redirect('/backend/goods')
 
 
 def delete(request, gid):
@@ -146,7 +146,7 @@ def delete(request, gid):
     try:
         ob = Goods.objects.get(id=gid)
         ob.delete()
-        return redirect('/backstage/goods')
+        return redirect('/backend/goods')
     except Exception as err:
         print(err)
         context = {'Info': 'Delete Failed', 'Detail': err}

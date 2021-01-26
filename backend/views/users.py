@@ -68,7 +68,7 @@ def insert(request):
         ob.state = 1
         ob.addtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         ob.save()  # 将数据存储至数据库
-        return redirect('/backstage/users')
+        return redirect('/backend/users')
     except Exception as err:
         print(err)
         context = {'Info': 'Addition Failed', 'Detail': err}
@@ -99,7 +99,7 @@ def update(request, uid):
         ob.code = request.POST['registerZip']
         ob.state = request.POST['status']
         ob.save()
-        return redirect('/backstage/users')
+        return redirect('/backend/users')
     except Exception as err:
         print(err)
         context = {'Info': 'Edit Failed', 'Detail': err}
@@ -111,7 +111,7 @@ def delete(request, uid):
     try:
         ob = Users.objects.get(id=uid)
         ob.delete()
-        return redirect('/backstage/users')
+        return redirect('/backend/users')
     except Exception as err:
         print(err)
         context = {'Info': 'Delete Failed', 'Detail': err}
@@ -141,7 +141,7 @@ def do_reset(request, uid):
         ob.password = pwd
 
         ob.save()
-        return redirect('/backstage/users')
+        return redirect('/backend/users')
     except Exception as err:
         print(err)
         context = {'Info': 'Reset Password Failed', 'Detail': err}

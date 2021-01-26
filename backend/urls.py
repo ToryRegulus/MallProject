@@ -1,4 +1,4 @@
-from backstage.views import index, users, types, goods, orders
+from backend.views import index, users, types, goods, orders
 from django.urls import path
 
 urlpatterns = [
