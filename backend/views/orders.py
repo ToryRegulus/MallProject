@@ -15,7 +15,7 @@ def index(request):
     kw = request.GET.get('keyword', None)
     if kw:
         # 查询收件人和地址中只要含有关键字的都可以
-        order_list = order_mod.filter(Q(linkman_contains=kw) | Q(address__contains=kw))
+        order_list = order_mod.filter(Q(linkman__contains=kw) | Q(address__contains=kw))
         mywhere.append('keyword=' + kw)
     else:
         order_list = order_mod.filter()
