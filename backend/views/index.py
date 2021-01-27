@@ -30,7 +30,7 @@ def login(request):
                 # 将当前登录信息以admin为key放入session
                 request.session['admin'] = user.toDict()
 
-                return redirect(reverse('backstage_index'))
+                return redirect(reverse('IndexBE'))
             else:
                 context = {'info': 'Your account is not admin account'}
         else:
@@ -44,4 +44,4 @@ def login(request):
 def logout(request):
     """退出登录"""
     del request.session['admin']
-    return redirect(reverse('backstage_sign_in'))
+    return redirect(reverse('SignInBE'))

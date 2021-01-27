@@ -2,17 +2,17 @@
 
 {% block sidebar %}
     <ul class="list-unstyled">
-        <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
-        <li><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
-        <li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
-        <li class="active"><a href="{% url 'backstage_orders_index' %}"><i class="fa fa-bar-chart"></i>Order </a></li>
+        <li><a href="{% url 'IndexBE' %}"> <i class="icon-home"></i>Home </a></li>
+        <li><a href="{% url 'UserIndexBE' %}"><i class="icon-user-outline"></i>Members </a></li>
+        <li><a href="{% url 'UserAddBE' %}"><i class="icon-new-file"></i>Add Members </a></li>
+        <li class="active"><a href="{% url 'OrderIndexBE' %}"><i class="fa fa-bar-chart"></i>Order </a></li>
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
             <i class="icon-windows"></i>Commodity Manage </a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="{% url 'backstage_types_index' %}">Browse Category</a></li>
-                <li><a href="{% url 'backstage_types_add' 0 %}">Add Category</a></li>
-                <li><a href="{% url 'backstage_goods_index' %}">Commodity Info</a></li>
-                <li><a href="{% url 'backstage_goods_add' %}">Commodity Addition</a></li>
+                <li><a href="{% url 'TypeIndexBE' %}">Browse Category</a></li>
+                <li><a href="{% url 'TypeAddBE' 0 %}">Add Category</a></li>
+                <li><a href="{% url 'GoodsIndexBE' %}">Commodity Info</a></li>
+                <li><a href="{% url 'GoodsAddBE' %}">Commodity Addition</a></li>
             </ul>
         </li>
     </ul>
@@ -29,7 +29,7 @@
     <!-- Breadcrumb -->
     <div class="container-fluid">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'backstage_index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'IndexBE' %}">Home</a></li>
             <li class="breadcrumb-item active">Orders</li>
         </ul>
     </div>
@@ -40,7 +40,7 @@
                 <div class="col-lg-12">
                     <div class="block">
                         <div class="title"><strong>Orders</strong></div>
-                        <form action="{% url 'backstage_orders_index' %}" method="get">
+                        <form action="{% url 'OrderIndexBE' %}" method="get">
                             <div class="col-lg-6">
                                 <div class="row">
                                     <div class="col-lg-1"><label class="form-control-label">KEY：</label></div>
@@ -78,7 +78,7 @@
                                     <div class="col-lg-1">
                                         <button class="btn btn-secondary"
                                                 style="height: 30px; width: 60px; line-height: 0px;">
-                                            <a href="{% url 'backstage_orders_index' %}"
+                                            <a href="{% url 'OrderIndexBE' %}"
                                                style="text-decoration: none; color: white;">All</a>
                                         </button>
                                     </div>
@@ -120,7 +120,7 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <a href="{% url 'backstage_orders_detail' vo.id %}" class="view-link">Details</a>
+                                            <a href="{% url 'OrderDetailBE' vo.id %}" class="view-link">Details</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

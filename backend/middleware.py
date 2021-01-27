@@ -21,7 +21,7 @@ class ShopMiddleware(object):
         # 判断用户登录，否则跳转登录页
         if re.match('/backend', path) and (path not in pass_url):
             if 'admin' not in request.session:
-                return redirect(reverse('backstage_sign_in'))
+                return redirect(reverse('SignInBE'))
 
         if re.match('/orders', path) or re.match('/vip', path):
             if 'user' not in request.session:

@@ -2,18 +2,18 @@
 
 {% block sidebar %}
     <ul class="list-unstyled">
-        <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
-        <li class="active"><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a>
+        <li><a href="{% url 'IndexBE' %}"> <i class="icon-home"></i>Home </a></li>
+        <li class="active"><a href="{% url 'UserIndexBE' %}"><i class="icon-user-outline"></i>Members </a>
         </li>
-        <li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
-        <li><a href="{% url 'backstage_orders_index' %}"><i class="fa fa-bar-chart"></i>Order </a></li>
+        <li><a href="{% url 'UserAddBE' %}"><i class="icon-new-file"></i>Add Members </a></li>
+        <li><a href="{% url 'OrderIndexBE' %}"><i class="fa fa-bar-chart"></i>Order </a></li>
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
             <i class="icon-windows"></i>Commodity Manage </a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="{% url 'backstage_types_index' %}">Browse Category</a></li>
-                <li><a href="{% url 'backstage_types_add' 0 %}">Add Category</a></li>
-                <li><a href="{% url 'backstage_goods_index' %}">Commodity Info</a></li>
-                <li><a href="{% url 'backstage_goods_add' %}">Commodity Addition</a></li>
+                <li><a href="{% url 'TypeIndexBE' %}">Browse Category</a></li>
+                <li><a href="{% url 'TypeAddBE' 0 %}">Add Category</a></li>
+                <li><a href="{% url 'GoodsIndexBE' %}">Commodity Info</a></li>
+                <li><a href="{% url 'GoodsAddBE' %}">Commodity Addition</a></li>
             </ul>
         </li>
     </ul>
@@ -29,7 +29,7 @@
     <!-- Breadcrumb-->
     <div class="container-fluid">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'backstage_index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'IndexBE' %}">Home</a></li>
             <li class="breadcrumb-item active">Members</li>
         </ul>
     </div>
@@ -39,7 +39,7 @@
                 <div class="col-lg-12">
                     <div class="block">
                         <div class="title"><strong>Members</strong></div>
-                        <form action="{% url 'backstage_users_index' %}" method="get">
+                        <form action="{% url 'UserIndexBE' %}" method="get">
                             <div class="col-lg-6">
                                 <div class="row">
                                     <div class="col-lg-1"><label class="form-control-label">KEY：</label></div>
@@ -68,7 +68,7 @@
                                     <div class="col-lg-2">
                                         <button class="btn btn-secondary"
                                                 style="height: 30px; width: 60px; line-height: 0px;">
-                                            <a href="{% url 'backstage_users_index' %}"
+                                            <a href="{% url 'UserIndexBE' %}"
                                                style="text-decoration: none; color: white;">All</a>
                                         </button>
                                     </div>
@@ -115,15 +115,15 @@
                                         </td>
                                         <td>
                                             <a style="text-decoration: none;"
-                                               href="{% url 'backstage_users_resetpwd' vo.id %}"
+                                               href="{% url 'UserResetPWDBE' vo.id %}"
                                                class='view-link'>Reset Password</a>
                                             &nbsp;&nbsp;&nbsp;
                                             <a style="text-decoration: none;"
-                                               href="{% url 'backstage_users_edit' vo.id %}"
+                                               href="{% url 'UserEditBE' vo.id %}"
                                                class='view-link'>Edit</a>
                                             &nbsp;&nbsp;&nbsp;
                                             <a style="text-decoration: none;"
-                                               href="{% url 'backstage_users_del' vo.id %}"
+                                               href="{% url 'UserDelBE' vo.id %}"
                                                class='view-link' onclick="del()">Delete</a>
                                         </td>
                                     </tr>
