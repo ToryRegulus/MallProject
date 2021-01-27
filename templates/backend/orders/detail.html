@@ -5,7 +5,7 @@
         <li><a href="{% url 'backstage_index' %}"> <i class="icon-home"></i>Home </a></li>
         <li><a href="{% url 'backstage_users_index' %}"><i class="icon-user-outline"></i>Members </a></li>
         <li><a href="{% url 'backstage_users_add' %}"><i class="icon-new-file"></i>Add Members </a></li>
-        <li class="active"><a href="charts.html"><i class="fa fa-bar-chart"></i>Order </a></li>
+        <li class="active"><a href="{% url 'backstage_orders_index' %}"><i class="fa fa-bar-chart"></i>Order </a></li>
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
             <i class="icon-windows"></i>Commodity Manage </a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -44,159 +44,72 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <tr>
-                                    <th>订单号：</th>
+                                    <th>Order ID : </th>
                                     <td>{{ orders.id }}</td>
-                                    <th>下单人：</th>
+                                    <th>Purchaser : </th>
                                     <td>{{ orders.name }}</td>
                                 </tr>
                                 <tr>
-                                    <th>收货人：</th>
+                                    <th>Receiver : </th>
                                     <td>{{ orders.linkman }}</td>
-                                    <th>订单地址：</th>
+                                    <th>Address : </th>
                                     <td>{{ orders.address }}</td>
                                 </tr>
                                 <tr>
-                                    <th>邮政编码：</th>
+                                    <th>ZIP : </th>
                                     <td>{{ orders.code }}</td>
-                                    <th>下单时间：</th>
+                                    <th>Purchase Time : </th>
                                     <td>{{ orders.addtime }}</td>
                                 </tr>
-                                <tr>#}
-                                    <th>总计金额：</th>
+                                <tr>
+                                    <th>Total : </th>
                                     <td>{{ orders.total }}</td>
-                                    <th>订单状态：</th>
+                                    <th>Status : </th>
                                     <td>
                                         {% if orders.state == 0 %}
-                                            新订单 &nbsp; &nbsp;【
-                                            <a href="{% url 'backstage_orders_state' %}?oid={{ orders.id }}&state=1">确认发货</a>
+                                            New Order &nbsp; &nbsp;【
+                                            <a href="{% url 'backstage_orders_state' %}?oid={{ orders.id }}&state=1">Confirm</a>
                                             】 &nbsp;【
-                                            <a href="{% url 'backstage_orders_state' %}?oid={{ orders.id }}&state=3">订单作废</a>
+                                            <a href="{% url 'backstage_orders_state' %}?oid={{ orders.id }}&state=3">Cancel</a>
                                             】
                                         {% elif orders.state == 1 %}
-                                            已发货
+                                            Shipped
                                         {% elif orders.state == 2 %}
                                         {% elif orders.state == 3 %}
-                                            无效订单
+                                            Cancelled
                                         {% endif %}
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
+                    <div class="title"><strong>Details</strong></div>
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
-                                <td>
-                                    {% if orders_list.has_previous %}
-                                        <font style="font-size: large;">
-                                            <a style="text-decoration: none;"
-                                               href="?page=
-                                                       {{ orders_list.previous_page_number }}{{ mywhere|join:'&' }}">&laquo;</a>
-                                        </font>
-                                    {% else %}
-                                        <font style="font-size: large;">&laquo;</font>
-                                    {% endif %}
-
-                                    {% for num in orders_list.paginator.page_range %}
-                                        {% if num == orders_list.number %}
-                                            <font style="font-size: large;">{{ num }}</font>
-                                        {% else %}
-                                            <font style="font-size: large;">
-                                                <a style="text-decoration: none;"
-                                                   href="?page={{ num }}{{ mywhere|join:'&' }}">{{ num }}</a>
-                                            </font>
-                                        {% endif %}
-                                    {% endfor %}
-
-                                    {% if orders_list.has_next %}
-                                        <font style="font-size: large;">
-                                            <a style="text-decoration: none;"
-                                               href="?page={{ orders_list.next_page_number }}{{ mywhere|join:'&' }}">&raquo;</a>
-                                        </font>
-                                    {% else %}
-                                        <font style="font-size: large;">&raquo;</font>
-                                    {% endif %}
-                                </td>
+                                <th>Commodity ID</th>
+                                <th>Picture</th>
+                                <th>Commodity Name</th>
+                                <th>Price</th>
+                                <th>Count</th>
                             </tr>
                             </thead>
+                            <tbody>
+                            {% for detail in detail_list %}
+                                <tr>
+                                    <td>{{ detail.goodsid }}</td>
+                                    <td><img src="/static/commodity/s_{{ detail.picname }}"></td>
+                                    <td>{{ detail.name }}</td>
+                                    <td>{{ detail.price }}</td>
+                                    <td>{{ detail.num }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    {#    <table class="table table-bordered">#}
-    {#        <tr>#}
-    {#            <th width="12%" style="text-align:right;background-color:#eee;">订单号：</th>#}
-    {#            <td width="25%">201700{{ orders.id }}</td>#}
-    {#            <th width="12%" style="text-align:right;background-color:#eee;">下单人：</th>#}
-    {#            <td width="51%">{{ orders.name }}</td>#}
-    {#        </tr>#}
-    {#        <tr>#}
-    {#            <th style="text-align:right;background-color:#eee;">收货人：</th>#}
-    {#            <td>{{ orders.linkman }}</td>#}
-    {#            <th style="text-align:right;background-color:#eee;">订单地址：</th>#}
-    {#            <td>{{ orders.address }}</td>#}
-    {#        </tr>#}
-    {#        <tr>#}
-    {#            <th style="text-align:right;background-color:#eee;">邮政编码：</th>#}
-    {#            <td>{{ orders.code }}</td>#}
-    {#            <th style="text-align:right;background-color:#eee;">下单时间：</th>#}
-    {#            <td>{{ orders.addtime }}</td>#}
-    {#        </tr>#}
-    {#        <tr>#}
-    {#            <th style="text-align:right;background-color:#eee;">总计金额：</th>#}
-    {#            <td>{{ orders.total }}</td>#}
-    {#            <th style="text-align:right;background-color:#eee;">订单状态：</th>#}
-    {#            <td>#}
-    {#                {% if orders.state == 0 %}#}
-    {#                    新订单 &nbsp; &nbsp;【<a href="{% url 'myadmin_orders_state' %}?oid={{orders.id}}&state=1">确认发货</a>】 &nbsp; #}
-    {#                    【<a href="{% url 'myadmin_orders_state' %}?oid={{orders.id}}&state=3">订单作废</a>】#}
-    {#                {% elif orders.state == 1 %}#}
-    {#                    已发货#}
-    {#                {% elif orders.state == 2 %}#}
-    {#                    已完成#}
-    {#                {% elif orders.state == 3 %}#}
-    {#                    无效订单#}
-    {#                {% else %}#}
-    {#                    未知#}
-    {#                {% endif %}#}
-    {#            </td>#}
-    {#        </tr>#}
-    {#    </table>#}
-    {#    <br/>               #}
-    {#    <h4>#}
-    {#        订单详情信息:#}
-    {#    </h4>#}
-    {#    <table class="table table-bordered table-striped">#}
-    {#        <thead>#}
-    {#            <tr>#}
-    {#                <th>id号</th>#}
-    {#                <th>图片</th>#}
-    {#                <th>商品名称</th>#}
-    {#                <th>单价</th>#}
-    {#                <th>数量</th>#}
-    {#                <th>小计</th>#}
-    {#            </tr>#}
-    {#        </thead>#}
-    {#        <tbody>#}
-    {#            {% for vo in detaillist %}#}
-    {#            <tr>#}
-    {#                <td>{{ vo.id }}</td>#}
-    {#                <td><img src="/static/commodity/s_{{ vo.picname }}" width="35" /></td>#}
-    {#                <td>{{ vo.name }}</td>#}
-    {#                <td>{{ vo.price }}</td>#}
-    {#                <td>{{ vo.num }}</td>#}
-    {#                <td>{{ vo.price }}</td>#}
-    {#            </tr>#}
-    {#            {% endfor %}#}
-    {#        </tbody>#}
-    {#    </table>#}
-    {##}
-    {#    <div style="text-align:center">#}
-    {#        <button onclick="window.history.back()">返回</button>#}
-    {##}
-    {#        <button >打印订单</button>#}
-    {#    </div>            #}
 {% endblock %}

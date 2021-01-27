@@ -57,11 +57,11 @@ def detail(request, oid):
                 id=og.goodsid).picname
 
         # 放置模板变量，加载模板并输出
-        context = {'orders': orders, 'detaillist': dlist}
+        context = {'orders': orders, 'detail_list': dlist}
         return render(request, 'backend/orders/detail.html', context)
     except Exception as err:
         print(err)
-        context = {'info': '没有找到要查看的信息！'}
+        context = {'Info': 'Can not find the content!'}
     return render(request, 'backend/info.html', context)
 
 
@@ -72,8 +72,8 @@ def state(request):
         ob = Orders.objects.get(id=oid)
         ob.state = request.GET['state']
         ob.save()
-        context = {'info': '修改成功！'}
+        context = {'Info': 'Success!'}
     except Exception as err:
         print(err)
-        context = {'info': '修改失败！'}
+        context = {'Info': 'Failed!', 'Detail': err}
     return render(request, 'backend/info.html', context)
