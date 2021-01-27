@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.core.paginator import Paginator
 
-from common.models import Goods, Users, Orders, Detail
+from backend.models import Goods, Users, Orders, Detail
 
 
 def index(request):
     """浏览信息"""
     # 获取订单信息
-    order_mod = Orders.objects
+    order_mod = Orders.objects.order_by('id')
     mywhere = []
 
     # 获取、判断并封装关keyword键搜索

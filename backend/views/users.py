@@ -1,9 +1,9 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from common.models import Users
+from backend.models import Users
 from django.db.models import Q
 from datetime import datetime
-from .. import base64
+import hashlib
 
 # Create your views here.
 
@@ -17,8 +17,7 @@ def index(request):
     kw = request.GET.get('keyword', None)
     if kw:
         # 查询账户或真实姓名中只要含有关键字的都可以
-        user_list = user_mod.filter(
-            Q(username__contains=kw) | Q(name__contains=kw))
+        user_list = user_mod.filter(Q(username__contains=kw) | Q(name__contains=kw))
         mywhere.append('keyword=' + kw)
     else:
         user_list = user_mod.filter()
@@ -48,16 +47,10 @@ def insert(request):
         ob = Users()  # 实例化Users模型
         ob.username = request.POST['registerUsername']
 
-        # 密码base64加密
-        pwd = request.POST['registerPassword']
-        pwd = base64.base64_encode(pwd)
-        ob.password = pwd
-
         # 密码md5加密
-        # import hashlib
-        # m = hashlib.md5()
-        # m.update(bytes(request.POST['registerPassword'], encoding='utf-8'))
-        # ob.password = m.hexdigest()
+        m = hashlib.md5()
+        m.update(bytes(request.POST['registerPassword'], encoding='utf-8'))
+        ob.password = m.hexdigest()
 
         ob.sex = request.POST['gender']
         ob.name = request.POST['registerName']
@@ -83,7 +76,7 @@ def edit(request, uid):
         return render(request, 'backend/users/edit.html', context)
     except Exception as err:
         print(err)
-        context = {'Info': 'Cannnot fetch the page', 'Detail': err}
+        context = {'Info': 'Can not fetch the page', 'Detail': err}
         return render(request, 'backend/info.html', context)
 
 
@@ -135,10 +128,10 @@ def do_reset(request, uid):
     try:
         ob = Users.objects.get(id=uid)
 
-        # 密码base64加密
-        pwd = request.POST['registerPassword']
-        pwd = base64.base64_encode(pwd)
-        ob.password = pwd
+        # 密码md5加密
+        m = hashlib.md5()
+        m.update(bytes(request.POST['registerPassword'], encoding='utf-8'))
+        ob.password = m.hexdigest()
 
         ob.save()
         return redirect('/backend/users')

@@ -1,8 +1,8 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
-from common.models import Users
-from common import base64
+from backend.models import Users
+import hashlib
 
 # Create your views here.
 
@@ -21,9 +21,11 @@ def login(request):
     """执行登录"""
     try:
         user = Users.objects.get(username=request.POST['loginUsername'])
-        pwd = request.POST['loginPassword']
-        pwd = base64.base64_encode(pwd)
-        if user.password == pwd:
+
+        # md5密码验证
+        m = hashlib.md5()
+        m.update(bytes(request.POST['loginPassword'], encoding='utf-8'))
+        if user.password == m.hexdigest():
             if user.state == 0:
                 # 将当前登录信息以admin为key放入session
                 request.session['admin'] = user.toDict()
@@ -33,16 +35,6 @@ def login(request):
                 context = {'info': 'Your account is not admin account'}
         else:
             context = {'info': 'Incorrect username or password'}
-
-        # md5密码验证
-        # import hashlib
-        # m = hashlib.md5()
-        # m.update(bytes(request.POST['registerPassword'], encoding='utf-8'))
-        # if user.password == m.hexdigest():
-        #     pass
-        # else:
-        #     pass
-
     except Exception as err:
         context = {'info': 'Incorrect username or password'}
         print(err)

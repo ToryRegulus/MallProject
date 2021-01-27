@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, reverse
-from common.models import Users, Types, Goods
+from backend.models import Users, Types, Goods
 from django.core.paginator import Paginator
 from datetime import datetime
-from common import base64
+import hashlib
 
 
 def load_info(request):
@@ -61,9 +61,9 @@ def login(request):
         # 判断当前用户状态是否正常
         if user.state == 0 or user.state == 1:
             # 验证密码
-            pwd = request.POST['password']
-            pwd = base64.base64_encode(pwd)
-            if user.password == pwd:
+            m = hashlib.md5()
+            m.update(bytes(request.POST['password'], encoding='utf-8'))
+            if user.password == m.hexdigest():
                 # 此处登录成功，将当前登录信息放入到session中，并跳转页面
                 request.session['user'] = user.toDict()
                 return redirect(reverse('web_index'))
@@ -97,10 +97,11 @@ def regist(request):
         ob = Users()  # 实例化Users模型
         ob.username = request.POST['registerUsername']
 
-        # 密码base64加密
-        pwd = request.POST['registerPassword']
-        pwd = base64.base64_encode(pwd)
-        ob.password = pwd
+        # 密码md5加密
+        m = hashlib.md5()
+        m.update(bytes(request.POST['registerPassword'], encoding='utf-8'))
+
+        ob.password = m.hexdigest()
         ob.sex = 1
         ob.state = 1
         ob.addtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')

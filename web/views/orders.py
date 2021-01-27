@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from common.models import Types, Orders, Detail
+from backend.models import Types, Orders, Detail
 from datetime import datetime
 
 

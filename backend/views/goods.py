@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from common.models import Goods, Types
+from backend.models import Goods, Types
 from django.db.models import Q
 from datetime import datetime
 from PIL import Image

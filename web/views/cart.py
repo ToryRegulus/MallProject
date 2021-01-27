@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from common.models import Types, Goods
+from backend.models import Types, Goods
 
 
 def load_info(request):

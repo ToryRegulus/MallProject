@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 
-from common.models import Types, Goods, Orders, Detail
+from backend.models import Types, Goods, Orders, Detail
 
 
 # 公共信息加载函数
